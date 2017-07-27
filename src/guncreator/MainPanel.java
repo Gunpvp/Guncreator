@@ -1,6 +1,5 @@
 package guncreator;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -15,6 +14,7 @@ import javax.swing.JTextField;
 
 import guncreator.categories.Category;
 import guncreator.categories.EditPanel;
+import guncreator.categories.ExplosionCategory;
 import guncreator.categories.ItemCategory;
 import guncreator.categories.ShootCategory;
 
@@ -30,6 +30,7 @@ public class MainPanel {
 	
 	private ItemCategory cat_item;
 	private ShootCategory cat_shoot;
+	private ExplosionCategory cat_explosion;
 	
 	public MainPanel(JPanel panel) {
 		instance = this;
@@ -78,6 +79,9 @@ public class MainPanel {
 		
 		cat_shoot = new ShootCategory();
 		categories.add(cat_shoot);
+		
+		cat_explosion = new ExplosionCategory();
+		categories.add(cat_explosion);
 		
 		for (Category<? extends Serializable> category : categories) {
 			JButton button = new JButton(category.getName());
