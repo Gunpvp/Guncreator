@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import guncreator.categories.Category;
 import guncreator.categories.EditPanel;
 import guncreator.categories.ItemCategory;
+import guncreator.categories.ShootCategory;
 
 public class MainPanel {
 	
@@ -28,6 +29,7 @@ public class MainPanel {
 	private List<Category<? extends Serializable>> categories = new ArrayList<>();
 	
 	private ItemCategory cat_item;
+	private ShootCategory cat_shoot;
 	
 	public MainPanel(JPanel panel) {
 		instance = this;
@@ -38,6 +40,7 @@ public class MainPanel {
 	public void init() {
 		
 		panel.setBackground(Color.GREEN);
+		panel.setLayout(null);
 		
 		/**
 		 * create panels
@@ -49,9 +52,12 @@ public class MainPanel {
 		controll_panel = new JPanel();
 		controll_panel.setBackground(Color.WHITE);
 		controll_panel.setLayout(new FlowLayout());
-		
-		panel.add(side_panel, BorderLayout.WEST);
-		panel.add(controll_panel, BorderLayout.SOUTH);
+
+		side_panel.setBounds(0, 0, 150, 500);
+		panel.add(side_panel);
+
+		controll_panel.setBounds(0, 500, 600, 100);
+		panel.add(controll_panel);
 		
 		/**
 		 * fill controll panel with stuff
@@ -70,6 +76,9 @@ public class MainPanel {
 		cat_item = new ItemCategory();
 		categories.add(cat_item);
 		
+		cat_shoot = new ShootCategory();
+		categories.add(cat_shoot);
+		
 		for (Category<? extends Serializable> category : categories) {
 			JButton button = new JButton(category.getName());
 			button.setBackground(Color.LIGHT_GRAY);
@@ -77,9 +86,10 @@ public class MainPanel {
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (before != null) panel.remove(before);
-					panel.add(category.getEditPanel(), BorderLayout.CENTER);
-					panel.repaint();
+					category.getEditPanel().setBounds(150,0,450,500);
+					panel.add(category.getEditPanel());
 					panel.validate();
+					panel.repaint();
 					before = category.getEditPanel();
 				}
 			});
