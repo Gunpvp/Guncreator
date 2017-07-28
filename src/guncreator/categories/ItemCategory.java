@@ -38,7 +38,7 @@ public class ItemCategory extends Category<ItemData> {
 		
 		panel.setLayout(null);
 		
-		JLabel text_material_name = new JLabel("Name des Material:");
+		JLabel text_material_name = new JLabel("Name des Materials:");
 		text_material_name.setBounds(10, 10, 150, 30);
 		panel.add(text_material_name);
 		material_name = new JTextField();
@@ -54,7 +54,7 @@ public class ItemCategory extends Category<ItemData> {
 		lore.setBounds(200, 60, 200, 30);
 		panel.add(lore);
 		
-		JLabel text_sound = new JLabel("Waffe erhalten Sound:");
+		JLabel text_sound = new JLabel("Waffe erhält Sound:");
 		text_sound.setBounds(10, 110, 150, 30);
 		panel.add(text_sound);
 		sound = new JTextField();
