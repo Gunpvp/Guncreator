@@ -28,7 +28,8 @@ public class HeadshotCategory extends Category<HeadshotData> {
 
 	@Override
 	public EditPanel<HeadshotData> createEditPanel() {
-		 		EditPanel<HeadshotData> panel = new EditPanel<HeadshotData>() {
+		
+		 	EditPanel<HeadshotData> panel = new EditPanel<HeadshotData>() {
 
 			@Override
 			protected HeadshotData generateData() {
@@ -51,7 +52,7 @@ public class HeadshotCategory extends Category<HeadshotData> {
 		panel.add(headshot);
 		
 		//Bonus Damage
-		JLabel text_bonus_damage = new JLabel("Bonus Damage:");
+		JLabel text_bonus_damage = new JLabel("Bonus Schaden:");
 		text_bonus_damage.setBounds(10, 60, 150, 30);
 		panel.add(text_bonus_damage);
 		bonus_damage = new JSlider(0,20);
@@ -61,7 +62,7 @@ public class HeadshotCategory extends Category<HeadshotData> {
 		bonus_damage.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_bonus_damage.setText("Bonus Damage: " + slider.getValue());
+	            text_bonus_damage.setText("Bonus Schaden: " + slider.getValue());
 	        }
 		});
 		

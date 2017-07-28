@@ -54,7 +54,7 @@ public class ItemCategory extends Category<ItemData> {
 		lore.setBounds(200, 60, 200, 30);
 		panel.add(lore);
 		
-		JLabel text_sound = new JLabel("Waffe erhält Sound:");
+		JLabel text_sound = new JLabel("Waffen Sound:");
 		text_sound.setBounds(10, 110, 150, 30);
 		panel.add(text_sound);
 		sound = new JTextField();
