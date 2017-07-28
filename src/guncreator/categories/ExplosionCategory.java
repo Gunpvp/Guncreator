@@ -37,7 +37,7 @@ public class ExplosionCategory extends Category<ExplosionData> {
 		
 		panel.setLayout(null);
 		
-		//Explosion vorhanden?
+		//Explosion available
 		JLabel text_explosion = new JLabel("Waffe erzeugt Explosion:");
 		text_explosion.setBounds(10, 10, 150, 30);
 		panel.add(text_explosion);
@@ -50,7 +50,7 @@ public class ExplosionCategory extends Category<ExplosionData> {
 		JLabel text_radius = new JLabel("Explosionsradius:");
 		text_radius.setBounds(10, 60, 150, 30);
 		panel.add(text_radius);
-		radius = new JSlider(0,10);
+		radius = new JSlider(0,50);
 		radius.setBackground(Color.GREEN);
 		radius.setBounds(200, 60, 200, 30);
 		panel.add(radius);
@@ -80,7 +80,7 @@ public class ExplosionCategory extends Category<ExplosionData> {
 		JLabel text_damage = new JLabel("Explosionschaden:");
 		text_damage.setBounds(10, 160, 150, 30);
 		panel.add(text_damage);
-		damage = new JSlider(0,10);
+		damage = new JSlider(0,20);
 		damage.setBackground(Color.GREEN);
 		damage.setBounds(200, 160, 200, 30);
 		panel.add(damage);
