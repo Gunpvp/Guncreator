@@ -66,10 +66,10 @@ public class MainPanel {
 		controll_panel.setBackground(Color.WHITE);
 		controll_panel.setLayout(new FlowLayout());
 
-		side_panel.setBounds(0, 0, 150, 600);
+		side_panel.setBounds(0, 0, 150, 700);
 		panel.add(side_panel);
 
-		controll_panel.setBounds(0, 600, 600, 100);
+		controll_panel.setBounds(0, 700, 600, 100);
 		panel.add(controll_panel);
 		
 		/**
@@ -120,7 +120,7 @@ public class MainPanel {
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (before != null) panel.remove(before);
-					category.getEditPanel().setBounds(150,0,450,600);
+					category.getEditPanel().setBounds(150,0,450,700);
 					panel.add(category.getEditPanel());
 					panel.validate();
 					panel.repaint();

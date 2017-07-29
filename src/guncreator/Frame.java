@@ -14,7 +14,7 @@ public class Frame extends JFrame {
 	
 	public Frame() {
 		super.setTitle("Guncreator v1.0");
-		super.setBounds(0, 0, 600, 700);
+		super.setBounds(0, 0, 600, 800);
 		super.setResizable(false);
 		super.setLocationRelativeTo(null);
 		
