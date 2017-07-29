@@ -9,24 +9,27 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.bukkit.Sound;
+
+import guns.weopons.data.GunSound;
 import guns.weopons.data.ShootingData;
 
-public class ShootCategory extends Category<ShootingData> {
+public class ShootingCategory extends Category<ShootingData> {
 
 	private JSlider delay_between_shots; 
-	private JSlider recoil;
+	private JSlider recoil; //float
 	private JSlider projectiles;
-	private JSlider damage;
+	private JSlider damage; //float
 	private JSlider speed;
 	private JCheckBox drag_down;
 	private JSlider drag_distance;
-	private JSlider spread;
+	private JSlider spread; //float
 	private JTextField shoot_sound;
 	private JSlider volume;
 	private JSlider pitch;
 	
 	
-	public ShootCategory() {
+	public ShootingCategory() {
 		super("SHOOTING");
 	}
 
@@ -37,7 +40,16 @@ public class ShootCategory extends Category<ShootingData> {
 			
 			@Override
 			protected ShootingData generateData() {
-				return null;
+				
+				GunSound shoot = new GunSound(Sound.valueOf(shoot_sound.getText().toUpperCase()), volume.getValue(), pitch.getValue());
+				
+				return new ShootingData(delay_between_shots.getValue(), recoil.getValue()/10, projectiles.getValue(), damage.getValue()/10, speed.getValue(), drag_down.isSelected(), drag_distance.getValue(), spread.getValue()/10, shoot);
+			}
+
+			@Override
+			protected void initWithAmmo(ShootingData data) {
+				// TODO Auto-generated method stub
+				
 			}
 		};
 		
@@ -47,14 +59,14 @@ public class ShootCategory extends Category<ShootingData> {
 		JLabel text_delay_between_shots = new JLabel("Schussverzögerung:");
 		text_delay_between_shots.setBounds(10, 10, 150, 30);
 		panel.add(text_delay_between_shots);
-		delay_between_shots = new JSlider(0,20);
+		delay_between_shots = new JSlider(0,200);
 		delay_between_shots.setBackground(Color.GREEN);
 		delay_between_shots.setBounds(200, 10, 200, 30);
 		panel.add(delay_between_shots);
 		delay_between_shots.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_delay_between_shots.setText("Schussverzögerung: " + slider.getValue());
+	            text_delay_between_shots.setText("Schussverzögerung: " + slider.getValue()/10);
 	        }
 		});
 		
@@ -92,14 +104,14 @@ public class ShootCategory extends Category<ShootingData> {
 		JLabel text_damage = new JLabel("Schaden:");
 		text_damage.setBounds(10, 160, 150, 30);
 		panel.add(text_damage);
-		damage = new JSlider(0,20);
+		damage = new JSlider(0,200);
 		damage.setBackground(Color.GREEN);
 		damage.setBounds(200, 160, 200, 30);
 		panel.add(damage);
 		damage.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_damage.setText("Schaden: " + slider.getValue());
+	            text_damage.setText("Schaden: " + slider.getValue()/10);
 	        }
 		});
 		
@@ -147,14 +159,14 @@ public class ShootCategory extends Category<ShootingData> {
 		JLabel text_spread = new JLabel("Streuung:");
 		text_spread.setBounds(10, 360, 150, 30);
 		panel.add(text_spread);
-		spread = new JSlider(0,50);
+		spread = new JSlider(0,500);
 		spread.setBackground(Color.GREEN);
 		spread.setBounds(200, 360, 200, 30);
 		panel.add(spread);
 		spread.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_spread.setText("Streuung: " + slider.getValue());
+	            text_spread.setText("Streuung: " + slider.getValue()/10);
 	        }
 		});
 		
