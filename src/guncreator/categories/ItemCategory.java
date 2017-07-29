@@ -8,6 +8,10 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.bukkit.Material;
+import org.bukkit.Sound;
+
+import guns.weopons.data.GunSound;
 import guns.weopons.data.ItemData;
 
 public class ItemCategory extends Category<ItemData> {
@@ -30,7 +34,15 @@ public class ItemCategory extends Category<ItemData> {
 			@Override
 			protected ItemData generateData() {
 				
-				return null;
+				GunSound item_sound = new GunSound(Sound.valueOf(sound.getText().toUpperCase()), volume.getValue(), pitch.getValue());
+				
+				return new ItemData(Material.valueOf(material_name.getText().toUpperCase()), lore.getText(), item_sound);
+				
+			}
+
+			@Override
+			protected void initWithAmmo(ItemData data) {
+				// TODO Auto-generated method stub
 				
 			}
 			

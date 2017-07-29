@@ -8,7 +8,10 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.bukkit.Sound;
+
 import guns.weopons.data.ExplosionData;
+import guns.weopons.data.GunSound;
 
 public class ExplosionCategory extends Category<ExplosionData> {
 
@@ -30,7 +33,16 @@ public class ExplosionCategory extends Category<ExplosionData> {
 		EditPanel<ExplosionData> panel = new EditPanel<ExplosionData>() {
 			
 			protected ExplosionData generateData() {
-				return null;
+				
+				GunSound shooter_sound = new GunSound(Sound.valueOf(shooter.getText().toUpperCase()), volume.getValue(), pitch.getValue());
+				
+				return new ExplosionData(explosion.isSelected(), radius.getValue()/10, knockback.getValue()/10, damage.getValue()/10, shooter_sound);
+			}
+
+			@Override
+			protected void initWithAmmo(ExplosionData data) {
+				// TODO Auto-generated method stub
+				
 			}
 			
 		};
@@ -50,14 +62,14 @@ public class ExplosionCategory extends Category<ExplosionData> {
 		JLabel text_radius = new JLabel("Explosionsradius:");
 		text_radius.setBounds(10, 60, 150, 30);
 		panel.add(text_radius);
-		radius = new JSlider(0,50);
+		radius = new JSlider(0,500);
 		radius.setBackground(Color.GREEN);
 		radius.setBounds(200, 60, 200, 30);
 		panel.add(radius);
 		radius.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_radius.setText("Explosionsradius: " + slider.getValue());
+	            text_radius.setText("Explosionsradius: " + slider.getValue()/10);
 	        }
 		});
 		
@@ -65,14 +77,14 @@ public class ExplosionCategory extends Category<ExplosionData> {
 		JLabel text_knockback = new JLabel("Explosionsrückstoß:");
 		text_knockback.setBounds(10, 110, 150, 30);
 		panel.add(text_knockback);
-		knockback = new JSlider(0,10);
+		knockback = new JSlider(0,100);
 		knockback.setBackground(Color.GREEN);
 		knockback.setBounds(200, 110, 200, 30);
 		panel.add(knockback);
 		knockback.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_knockback.setText("Explosionsrückstoß: " + slider.getValue());
+	            text_knockback.setText("Explosionsrückstoß: " + slider.getValue()/10);
 	        }
 		});
 		
@@ -80,14 +92,14 @@ public class ExplosionCategory extends Category<ExplosionData> {
 		JLabel text_damage = new JLabel("Explosionschaden:");
 		text_damage.setBounds(10, 160, 150, 30);
 		panel.add(text_damage);
-		damage = new JSlider(0,20);
+		damage = new JSlider(0,200);
 		damage.setBackground(Color.GREEN);
 		damage.setBounds(200, 160, 200, 30);
 		panel.add(damage);
 		damage.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_damage.setText("Explosionschaden: " + slider.getValue());
+	            text_damage.setText("Explosionschaden: " + slider.getValue()/10);
 	        }
 		});
 		

@@ -9,6 +9,9 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.bukkit.Sound;
+
+import guns.weopons.data.GunSound;
 import guns.weopons.data.ReloadData;
 
 public class ReloadCategory extends Category<ReloadData> {
@@ -37,7 +40,16 @@ public class ReloadCategory extends Category<ReloadData> {
 			@Override
 			protected ReloadData generateData() {
 				
-				return null;
+				GunSound sound_start = new GunSound(Sound.valueOf(reload_sound_start.getText().toUpperCase()), reload_sound_start_volume.getValue(), reload_sound_start_pitch.getValue());
+				GunSound sound_finish = new GunSound(Sound.valueOf(reload_sound_finish.getText().toUpperCase()), reload_sound_finish_volume.getValue(), reload_sound_finish_pitch.getValue());
+				
+				return new ReloadData(reload_ammo.isSelected(), reload_individual.isSelected(), fully_automatic.isSelected(), reload_amount.getValue(), reload_duration.getValue(), sound_start, sound_finish);
+				
+			}
+
+			@Override
+			protected void initWithAmmo(ReloadData data) {
+				// TODO Auto-generated method stub
 				
 			}
 			

@@ -26,7 +26,13 @@ public class BurstfireCategory extends Category<BurstfireData>{
 			@Override
 			protected BurstfireData generateData() {
 				
-				return null;
+				return new BurstfireData(shots_per_burst.getValue(), delay_between.getValue());
+				
+			}
+
+			@Override
+			protected void initWithAmmo(BurstfireData data) {
+				
 				
 			}
 		};

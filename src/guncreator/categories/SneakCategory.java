@@ -29,7 +29,13 @@ public class SneakCategory extends Category<SneakData>{
 			@Override
 			protected SneakData generateData() {
 				
-				return null;
+				return new SneakData(sneak_depending.isSelected(), block_recoil.isSelected(), spread.getValue()/10);
+				
+			}
+
+			@Override
+			protected void initWithAmmo(SneakData data) {
+				// TODO Auto-generated method stub
 				
 			}
 			
@@ -59,14 +65,14 @@ public class SneakCategory extends Category<SneakData>{
 		JLabel text_spread = new JLabel("Streuung:");
 		text_spread.setBounds(10, 110, 150, 30);
 		panel.add(text_spread);
-		spread = new JSlider(0,50);
+		spread = new JSlider(0,500);
 		spread.setBackground(Color.GREEN);
 		spread.setBounds(200, 110, 200, 30);
 		panel.add(spread);
 		spread.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_spread.setText("Streuung: " + slider.getValue());
+	            text_spread.setText("Streuung: " + slider.getValue()/10);
 	        }
 		});
 		

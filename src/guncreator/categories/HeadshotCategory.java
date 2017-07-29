@@ -8,6 +8,9 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.bukkit.Sound;
+
+import guns.weopons.data.GunSound;
 import guns.weopons.data.HeadshotData;
 
 public class HeadshotCategory extends Category<HeadshotData> {
@@ -34,7 +37,16 @@ public class HeadshotCategory extends Category<HeadshotData> {
 			@Override
 			protected HeadshotData generateData() {
 				
-				return null;
+				GunSound shooter = new GunSound(Sound.valueOf(shooter_sound.getText().toUpperCase()), shooter_volume.getValue(), shooter_pitch.getValue());
+				GunSound victim = new GunSound(Sound.valueOf(victim_sound.getText().toUpperCase()), victim_volume.getValue(), victim_pitch.getValue());
+				
+				return new HeadshotData(headshot.isSelected(), bonus_damage.getValue()/10, firework.isSelected(), shooter, victim);
+				
+			}
+
+			@Override
+			protected void initWithAmmo(HeadshotData data) {
+
 				
 			}
 			
@@ -55,14 +67,14 @@ public class HeadshotCategory extends Category<HeadshotData> {
 		JLabel text_bonus_damage = new JLabel("Bonus Schaden:");
 		text_bonus_damage.setBounds(10, 60, 150, 30);
 		panel.add(text_bonus_damage);
-		bonus_damage = new JSlider(0,20);
+		bonus_damage = new JSlider(0,200);
 		bonus_damage.setBackground(Color.GREEN);
 		bonus_damage.setBounds(200, 60, 200, 30);
 		panel.add(bonus_damage);
 		bonus_damage.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_bonus_damage.setText("Bonus Schaden: " + slider.getValue());
+	            text_bonus_damage.setText("Bonus Schaden: " + slider.getValue()/10);
 	        }
 		});
 		
