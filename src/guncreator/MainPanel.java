@@ -20,7 +20,8 @@ import guncreator.categories.ExplosionCategory;
 import guncreator.categories.HeadshotCategory;
 import guncreator.categories.ItemCategory;
 import guncreator.categories.ReloadCategory;
-import guncreator.categories.ShootCategory;
+import guncreator.categories.ScopeCategory;
+import guncreator.categories.ShootingCategory;
 import guncreator.categories.SneakCategory;
 
 public class MainPanel {
@@ -34,13 +35,14 @@ public class MainPanel {
 	private List<Category<? extends Serializable>> categories = new ArrayList<>();
 	
 	private ItemCategory cat_item;
-	private ShootCategory cat_shoot;
+	private ShootingCategory cat_shoot;
 	private ExplosionCategory cat_explosion;
 	private HeadshotCategory cat_headshot;
 	private ReloadCategory cat_reload;
 	private SneakCategory cat_sneak;
 	private BurstfireCategory cat_burstfire;
 	private AmmoCategory cat_ammo;
+	private ScopeCategory cat_scope;
 	
 	public MainPanel(JPanel panel) {
 		instance = this;
@@ -87,7 +89,7 @@ public class MainPanel {
 		cat_item = new ItemCategory();
 		categories.add(cat_item);
 		
-		cat_shoot = new ShootCategory();
+		cat_shoot = new ShootingCategory();
 		categories.add(cat_shoot);
 		
 		cat_explosion = new ExplosionCategory();
@@ -107,6 +109,9 @@ public class MainPanel {
 		
 		cat_ammo = new AmmoCategory();
 		categories.add(cat_ammo);
+		
+		cat_scope = new ScopeCategory();
+		categories.add(cat_scope);
 		
 		for (Category<? extends Serializable> category : categories) {
 			JButton button = new JButton(category.getName());
