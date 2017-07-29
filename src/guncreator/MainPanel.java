@@ -17,7 +17,9 @@ import guncreator.categories.EditPanel;
 import guncreator.categories.ExplosionCategory;
 import guncreator.categories.HeadshotCategory;
 import guncreator.categories.ItemCategory;
+import guncreator.categories.ReloadCategory;
 import guncreator.categories.ShootCategory;
+import guncreator.categories.SneakCategory;
 
 public class MainPanel {
 	
@@ -33,6 +35,8 @@ public class MainPanel {
 	private ShootCategory cat_shoot;
 	private ExplosionCategory cat_explosion;
 	private HeadshotCategory cat_headshot;
+	private ReloadCategory cat_reload;
+	private SneakCategory cat_sneak;
 	
 	public MainPanel(JPanel panel) {
 		instance = this;
@@ -56,10 +60,10 @@ public class MainPanel {
 		controll_panel.setBackground(Color.WHITE);
 		controll_panel.setLayout(new FlowLayout());
 
-		side_panel.setBounds(0, 0, 150, 500);
+		side_panel.setBounds(0, 0, 150, 600);
 		panel.add(side_panel);
 
-		controll_panel.setBounds(0, 500, 600, 100);
+		controll_panel.setBounds(0, 600, 600, 100);
 		panel.add(controll_panel);
 		
 		/**
@@ -88,6 +92,12 @@ public class MainPanel {
 		cat_headshot = new HeadshotCategory();
 		categories.add(cat_headshot);
 		
+		cat_reload = new ReloadCategory();
+		categories.add(cat_reload);
+		
+		cat_sneak = new SneakCategory();
+		categories.add(cat_sneak);
+		
 		for (Category<? extends Serializable> category : categories) {
 			JButton button = new JButton(category.getName());
 			button.setBackground(Color.LIGHT_GRAY);
@@ -95,7 +105,7 @@ public class MainPanel {
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (before != null) panel.remove(before);
-					category.getEditPanel().setBounds(150,0,450,500);
+					category.getEditPanel().setBounds(150,0,450,600);
 					panel.add(category.getEditPanel());
 					panel.validate();
 					panel.repaint();
