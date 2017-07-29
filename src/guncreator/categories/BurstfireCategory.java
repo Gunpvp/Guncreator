@@ -48,6 +48,7 @@ public class BurstfireCategory extends Category<BurstfireData>{
 	        }
 		});
 		
+		//shot delay
 		JLabel text_delay_between = new JLabel("Verzögerung:");
 		text_delay_between.setBounds(10, 60, 150, 30);
 		panel.add(text_delay_between);
