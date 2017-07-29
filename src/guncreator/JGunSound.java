@@ -21,79 +21,78 @@ public class JGunSound extends JPanel {
 
 	public JGunSound(String text_sound_1, String text_sound_2) {
 		super(null);
-
-
+		
 		//sound 1
-		JLabel lable_sound_1 = new JLabel(text_sound_1 + "Sound:");
+		JLabel lable_sound_1 = new JLabel(text_sound_1 + " Sound:");
 		lable_sound_1.setBounds(0, 0, 150, 30);
 		this.add(lable_sound_1);
 		sound_name_1 = new JTextField();
 		sound_name_1.setBackground(Color.LIGHT_GRAY);
-		sound_name_1.setBounds(200, 0, 200, 30);
+		sound_name_1.setBounds(190, 0, 200, 30);
 		this.add(sound_name_1);
 		
-		JLabel text_volume_1 = new JLabel(text_sound_1 + "Volume:");
+		JLabel text_volume_1 = new JLabel(text_sound_1 + " Volume:");
 		text_volume_1.setBounds(0, 50, 150, 30);
 		this.add(text_volume_1);
 		volume_1 = new JSlider(0,10);
 		volume_1.setBackground(Color.GREEN);
-		volume_1.setBounds(200, 50, 200, 30);
+		volume_1.setBounds(190, 50, 200, 30);
 		this.add(volume_1 );
 		volume_1.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_volume_1.setText(text_sound_1 + "Volume: " + slider.getValue());
+	            text_volume_1.setText(text_sound_1 + " Volume: " + slider.getValue());
 	        }
 	    });
 		
-		JLabel text_pitch_1 = new JLabel(pitch_1 + "Pitch:");
+		JLabel text_pitch_1 = new JLabel(text_sound_1 + " Pitch:");
 		text_pitch_1.setBounds(0, 100, 150, 30);
 		this.add(text_pitch_1);
 		pitch_1 = new JSlider(0,100);
-		pitch_1.setBounds(200, 100, 200, 30);
+		pitch_1.setBounds(190, 100, 200, 30);
 		pitch_1.setBackground(Color.GREEN);
 		this.add(pitch_1);
 		pitch_1.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_pitch_1.setText(pitch_1 + "Pitch: " + slider.getValue());
+	            text_pitch_1.setText(text_sound_1 + " Pitch: " + slider.getValue());
 	        }
 	    });
 		
 		//sound 2
-		JLabel lable_sound_2 = new JLabel(text_sound_2 + "Sound:");
-		lable_sound_2.setBounds(0, 0, 150, 30);
+		JLabel lable_sound_2 = new JLabel(text_sound_2 + " Sound:");
+		lable_sound_2.setBounds(0, 150, 150, 30);
 		this.add(lable_sound_2);
 		sound_name_2 = new JTextField();
 		sound_name_2.setBackground(Color.LIGHT_GRAY);
-		sound_name_2.setBounds(200, 0, 200, 30);
+		sound_name_2.setBounds(190, 150, 200, 30);
 		this.add(sound_name_2);
 		
-		JLabel text_volume_2 = new JLabel(text_sound_2 + "Volume:");
-		text_volume_2.setBounds(0, 50, 150, 30);
+		JLabel text_volume_2 = new JLabel(text_sound_2 + " Volume:");
+		text_volume_2.setBounds(0, 200, 150, 30);
 		this.add(text_volume_2);
 		volume_2 = new JSlider(0,10);
 		volume_2.setBackground(Color.GREEN);
-		volume_2.setBounds(200, 50, 200, 30);
+		volume_2.setBounds(190, 200, 200, 30);
 		this.add(volume_2 );
 		volume_2.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_volume_2.setText(text_sound_2 + "Volume: " + slider.getValue());
+	            text_volume_2.setText(text_sound_2 + " Volume: " + slider.getValue());
 	        }
 	    });
 		
-		JLabel text_pitch_2 = new JLabel(pitch_2 + "Pitch:");
-		text_pitch_2.setBounds(0, 100, 150, 30);
+		JLabel text_pitch_2 = new JLabel(text_sound_2 + " Pitch:");
+		text_pitch_2.setBounds(0, 250, 150, 30);
 		this.add(text_pitch_2);
 		pitch_2 = new JSlider(0,100);
-		pitch_2.setBounds(200, 100, 200, 30);
+		pitch_2.setBounds(190, 250, 200, 30);
 		pitch_2.setBackground(Color.GREEN);
 		this.add(pitch_2);
 		pitch_2.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_pitch_2.setText(pitch_2 + "Pitch: " + slider.getValue());
+	            text_pitch_2.setText(text_sound_2 + " Pitch: " + slider.getValue());
 	        }
 	    });
 
