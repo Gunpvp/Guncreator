@@ -8,17 +8,18 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.bukkit.Material;
+import org.bukkit.Sound;
+
+import guncreator.JGunSound;
 import guns.weopons.data.AmmoData;
+import guns.weopons.data.GunSound;
 
 public class AmmoCategory extends Category<AmmoData>{
 
 	private JTextField material;
-	private JTextField out_of_ammo_sound;
-	private JSlider out_of_ammo_sound_volume;
-	private JSlider out_of_ammo_sound_pitch;
-	private JTextField shoot_with_no_ammo_sound;
-	private JSlider shoot_with_no_ammo_sound_volume;
-	private JSlider shoot_with_no_ammo_sound_pitch;
+	private JGunSound out_of_ammo_sound;
+	private JGunSound shoot_with_no_ammo_sound;
 	
 	public AmmoCategory() {
 		super("AMMO");
@@ -33,7 +34,16 @@ public class AmmoCategory extends Category<AmmoData>{
 			@Override
 			protected AmmoData generateData() {
 				
-				return null;
+				//GunSound out_of_ammo = new GunSound(Sound.valueOf(out_of_ammo_sound.getText().toUpperCase()), out_of_ammo_sound_volume.getValue(), out_of_ammo_sound_pitch.getValue());
+				//GunSound shoot_with_no_ammo = new GunSound(Sound.valueOf(shoot_with_no_ammo_sound.getText().toUpperCase()), shoot_with_no_ammo_sound_volume.getValue(), shoot_with_no_ammo_sound_pitch.getValue());
+				
+				return new AmmoData(Material.valueOf(material.getText().toUpperCase()), out_of_ammo_sound.getGunSound1(), shoot_with_no_ammo_sound.getGunSound1());				
+			}
+
+			@Override
+			protected void initWithAmmo(AmmoData data) {
+				
+				material.setText(data.getMaterial().toString().toUpperCase());
 				
 			}
 			
@@ -50,79 +60,17 @@ public class AmmoCategory extends Category<AmmoData>{
 		material.setBounds(200, 10, 200, 30);
 		panel.add(material);
 		
-		//out of ammo sound
-		JLabel text_out_of_ammo_sound = new JLabel("Out of Ammo Sound:");
-		text_out_of_ammo_sound.setBounds(10, 60, 150, 30);
-		panel.add(text_out_of_ammo_sound);
-		out_of_ammo_sound = new JTextField();
-		out_of_ammo_sound.setBackground(Color.LIGHT_GRAY);
-		out_of_ammo_sound.setBounds(200, 60, 200, 30);
+		//out of ammo
+		out_of_ammo_sound = new JGunSound("Out of Ammo 1", "Out of Ammo 2");
+		out_of_ammo_sound.setBounds(10, 60, 400, 300);
+		out_of_ammo_sound.setBackground(Color.GREEN);
 		panel.add(out_of_ammo_sound);
 		
-		JLabel text_out_of_ammo_sound_volume = new JLabel("Out of Ammo Volume:");
-		text_out_of_ammo_sound_volume.setBounds(10, 110, 150, 30);
-		panel.add(text_out_of_ammo_sound_volume);
-		out_of_ammo_sound_volume = new JSlider(0,10);
-		out_of_ammo_sound_volume.setBackground(Color.GREEN);
-		out_of_ammo_sound_volume.setBounds(200, 110, 200, 30);
-		panel.add(out_of_ammo_sound_volume);
-		out_of_ammo_sound_volume.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_out_of_ammo_sound_volume.setText("Out of Ammo Volume: " + slider.getValue());
-	        }
-	    });
-		
-		JLabel text_out_of_ammo_sound_pitch = new JLabel("Out of Ammo Pitch:");
-		text_out_of_ammo_sound_pitch.setBounds(10, 160, 150, 30);
-		panel.add(text_out_of_ammo_sound_pitch);
-		out_of_ammo_sound_pitch = new JSlider(0,100);
-		out_of_ammo_sound_pitch.setBounds(200, 160, 200, 30);
-		out_of_ammo_sound_pitch.setBackground(Color.GREEN);
-		panel.add(out_of_ammo_sound_pitch);
-		out_of_ammo_sound_pitch.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_out_of_ammo_sound_pitch.setText("Out of Ammo Pitch: " + slider.getValue());
-	        }
-	    });
-		
 		//shoot with no ammo sound
-		JLabel text_shoot_with_no_ammo_sound = new JLabel("Shoot without Ammo Sound:");
-		text_shoot_with_no_ammo_sound.setBounds(10, 210, 150, 30);
-		panel.add(text_shoot_with_no_ammo_sound);
-		shoot_with_no_ammo_sound = new JTextField();
-		shoot_with_no_ammo_sound.setBackground(Color.LIGHT_GRAY);
-		shoot_with_no_ammo_sound.setBounds(200, 210, 200, 30);
+		shoot_with_no_ammo_sound = new JGunSound("No Ammo 1", "No Ammo 2");
+		shoot_with_no_ammo_sound.setBounds(10, 360, 400, 300);
+		shoot_with_no_ammo_sound.setBackground(Color.GREEN);
 		panel.add(shoot_with_no_ammo_sound);
-		
-		JLabel text_shoot_with_no_ammo_sound_volume = new JLabel("Shoot without Ammo Volume:");
-		text_shoot_with_no_ammo_sound_volume.setBounds(10, 260, 150, 30);
-		panel.add(text_shoot_with_no_ammo_sound_volume);
-		shoot_with_no_ammo_sound_volume = new JSlider(0,10);
-		shoot_with_no_ammo_sound_volume.setBackground(Color.GREEN);
-		shoot_with_no_ammo_sound_volume.setBounds(200, 260, 200, 30);
-		panel.add(shoot_with_no_ammo_sound_volume);
-		shoot_with_no_ammo_sound_volume.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_shoot_with_no_ammo_sound_volume.setText("Shoot without Ammo Volume: " + slider.getValue());
-	        }
-	    });
-		
-		JLabel text_shoot_with_no_ammo_sound_pitch = new JLabel("Shoot without Ammo Pitch:");
-		text_shoot_with_no_ammo_sound_pitch.setBounds(10,310, 150, 30);
-		panel.add(text_shoot_with_no_ammo_sound_pitch);
-		shoot_with_no_ammo_sound_pitch = new JSlider(0,100);
-		shoot_with_no_ammo_sound_pitch.setBounds(200, 310, 200, 30);
-		shoot_with_no_ammo_sound_pitch.setBackground(Color.GREEN);
-		panel.add(shoot_with_no_ammo_sound_pitch);
-		shoot_with_no_ammo_sound_pitch.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_shoot_with_no_ammo_sound_pitch.setText("Shoot without Ammo Pitch: " + slider.getValue());
-	        }
-	    });
 		
 		return panel;
 	}
