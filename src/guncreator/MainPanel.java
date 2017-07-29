@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import guncreator.categories.BurstfireCategory;
 import guncreator.categories.Category;
 import guncreator.categories.EditPanel;
 import guncreator.categories.ExplosionCategory;
@@ -37,6 +38,7 @@ public class MainPanel {
 	private HeadshotCategory cat_headshot;
 	private ReloadCategory cat_reload;
 	private SneakCategory cat_sneak;
+	private BurstfireCategory cat_burstfire;
 	
 	public MainPanel(JPanel panel) {
 		instance = this;
@@ -97,6 +99,9 @@ public class MainPanel {
 		
 		cat_sneak = new SneakCategory();
 		categories.add(cat_sneak);
+
+		cat_burstfire = new BurstfireCategory();
+		categories.add(cat_burstfire);
 		
 		for (Category<? extends Serializable> category : categories) {
 			JButton button = new JButton(category.getName());
