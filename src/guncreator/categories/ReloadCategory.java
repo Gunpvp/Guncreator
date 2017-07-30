@@ -5,13 +5,10 @@ import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
-import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.bukkit.Sound;
-
-import guns.weopons.data.GunSound;
+import guncreator.JGunSound;
 import guns.weopons.data.ReloadData;
 
 public class ReloadCategory extends Category<ReloadData> {
@@ -21,12 +18,8 @@ public class ReloadCategory extends Category<ReloadData> {
 	private JCheckBox fully_automatic;
 	private JSlider reload_amount;
 	private JSlider reload_duration;
-	private JTextField reload_sound_start;
-	private JSlider reload_sound_start_volume;
-	private JSlider reload_sound_start_pitch;
-	private JTextField reload_sound_finish;
-	private JSlider reload_sound_finish_volume;
-	private JSlider reload_sound_finish_pitch;
+	private JGunSound reload_sound_start;
+	private JGunSound reload_sound_finish;
 	
 	public ReloadCategory() {
 		super("RELOAD");
@@ -39,11 +32,8 @@ public class ReloadCategory extends Category<ReloadData> {
 
 			@Override
 			protected ReloadData generateData() {
-				
-				GunSound sound_start = new GunSound(Sound.valueOf(reload_sound_start.getText().toUpperCase()), reload_sound_start_volume.getValue(), reload_sound_start_pitch.getValue());
-				GunSound sound_finish = new GunSound(Sound.valueOf(reload_sound_finish.getText().toUpperCase()), reload_sound_finish_volume.getValue(), reload_sound_finish_pitch.getValue());
-				
-				return new ReloadData(reload_ammo.isSelected(), reload_individual.isSelected(), fully_automatic.isSelected(), reload_amount.getValue(), reload_duration.getValue(), sound_start, sound_finish);
+								
+				return new ReloadData(reload_ammo.isSelected(), reload_individual.isSelected(), fully_automatic.isSelected(), reload_amount.getValue(), reload_duration.getValue(), reload_sound_start.getGunSound(), reload_sound_finish.getGunSound());
 				
 			}
 
@@ -115,78 +105,16 @@ public class ReloadCategory extends Category<ReloadData> {
 		});
 		
 		//reload sound start
-		JLabel text_reload_sound_start = new JLabel("Reload Start Sound:");
-		text_reload_sound_start.setBounds(10, 260, 150, 30);
-		panel.add(text_reload_sound_start);
-		reload_sound_start = new JTextField();
-		reload_sound_start.setBackground(Color.LIGHT_GRAY);
-		reload_sound_start.setBounds(200, 260, 200, 30);
+		reload_sound_start = new JGunSound("Reload start");
+		reload_sound_start.setBounds(10, 260, 400, 300);
+		reload_sound_start.setBackground(Color.GREEN);
 		panel.add(reload_sound_start);
 		
-		JLabel text_reload_sound_start_volume = new JLabel("Start Volume:");
-		text_reload_sound_start_volume.setBounds(10, 310, 150, 30);
-		panel.add(text_reload_sound_start_volume);
-		reload_sound_start_volume = new JSlider(0,10);
-		reload_sound_start_volume.setBackground(Color.GREEN);
-		reload_sound_start_volume.setBounds(200, 310, 200, 30);
-		panel.add(reload_sound_start_volume );
-		reload_sound_start_volume.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_reload_sound_start_volume.setText("Start Volume: " + slider.getValue());
-	        }
-	    });
-		
-		JLabel text_reload_sound_start_pitch = new JLabel("Start Pitch:");
-		text_reload_sound_start_pitch.setBounds(10, 360, 150, 30);
-		panel.add(text_reload_sound_start_pitch);
-		reload_sound_start_pitch = new JSlider(0,100);
-		reload_sound_start_pitch.setBounds(200, 360, 200, 30);
-		reload_sound_start_pitch.setBackground(Color.GREEN);
-		panel.add(reload_sound_start_pitch);
-		reload_sound_start_pitch.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_reload_sound_start_pitch.setText("Start Pitch: " + slider.getValue());
-	        }
-	    });
-		
 		//Shooter Sound
-		JLabel text_reload_sound_finish = new JLabel("Reload Finished Sound:");
-		text_reload_sound_finish.setBounds(10, 410, 150, 30);
-		panel.add(text_reload_sound_finish);
-		reload_sound_finish = new JTextField();
-		reload_sound_finish.setBackground(Color.LIGHT_GRAY);
-		reload_sound_finish.setBounds(200, 410, 200, 30);
+		reload_sound_finish = new JGunSound("Reload finish");
+		reload_sound_finish.setBounds(10, 560, 400, 300);
+		reload_sound_finish.setBackground(Color.GREEN);
 		panel.add(reload_sound_finish);
-		
-		JLabel text_reload_sound_finish_volume = new JLabel("Finished Volume:");
-		text_reload_sound_finish_volume.setBounds(10, 460, 150, 30);
-		panel.add(text_reload_sound_finish_volume);
-		reload_sound_finish_volume = new JSlider(0,10);
-		reload_sound_finish_volume.setBackground(Color.GREEN);
-		reload_sound_finish_volume.setBounds(200, 460, 200, 30);
-		panel.add(reload_sound_finish_volume );
-		reload_sound_finish_volume.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_reload_sound_finish_volume.setText("Finished Volume: " + slider.getValue());
-	        }
-	    });
-		
-		JLabel text_reload_sound_finish_pitch = new JLabel("Finished Pitch:");
-		text_reload_sound_finish_pitch.setBounds(10, 510, 150, 30);
-		panel.add(text_reload_sound_finish_pitch);
-		reload_sound_finish_pitch = new JSlider(0,100);
-		reload_sound_finish_pitch.setBounds(200, 510, 200, 30);
-		reload_sound_finish_pitch.setBackground(Color.GREEN);
-		panel.add(reload_sound_finish_pitch);
-		reload_sound_finish_pitch.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_reload_sound_finish_pitch.setText("Finished Pitch: " + slider.getValue());
-	        }
-	    });
 		
 		
 		return panel;

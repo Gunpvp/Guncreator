@@ -5,13 +5,10 @@ import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
-import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.bukkit.Sound;
-
-import guns.weopons.data.GunSound;
+import guncreator.JGunSound;
 import guns.weopons.data.ShootingData;
 
 public class ShootingCategory extends Category<ShootingData> {
@@ -24,10 +21,7 @@ public class ShootingCategory extends Category<ShootingData> {
 	private JCheckBox drag_down;
 	private JSlider drag_distance;
 	private JSlider spread; //float
-	private JTextField shoot_sound;
-	private JSlider volume;
-	private JSlider pitch;
-	
+	private JGunSound shoot_sound;	
 	
 	public ShootingCategory() {
 		super("SHOOTING");
@@ -41,9 +35,7 @@ public class ShootingCategory extends Category<ShootingData> {
 			@Override
 			protected ShootingData generateData() {
 				
-				GunSound shoot = new GunSound(Sound.valueOf(shoot_sound.getText().toUpperCase()), volume.getValue(), pitch.getValue());
-				
-				return new ShootingData(delay_between_shots.getValue(), recoil.getValue()/10, projectiles.getValue(), damage.getValue()/10, speed.getValue(), drag_down.isSelected(), drag_distance.getValue(), spread.getValue()/10, shoot);
+				return new ShootingData(delay_between_shots.getValue(), recoil.getValue()/10, projectiles.getValue(), damage.getValue()/10, speed.getValue(), drag_down.isSelected(), drag_distance.getValue(), spread.getValue()/10, shoot_sound.getGunSound());
 			}
 
 			@Override
@@ -171,41 +163,10 @@ public class ShootingCategory extends Category<ShootingData> {
 		});
 		
 		//Shooter Sound
-		JLabel text_shoot_sound = new JLabel("Schuss Sound:");
-		text_shoot_sound.setBounds(10, 410, 150, 30);
-		panel.add(text_shoot_sound);
-		shoot_sound = new JTextField();
-		shoot_sound.setBackground(Color.LIGHT_GRAY);
-		shoot_sound.setBounds(200, 410, 200, 30);
+		shoot_sound = new JGunSound("Schuss");
+		shoot_sound.setBounds(10, 360, 400, 300);
+		shoot_sound.setBackground(Color.GREEN);
 		panel.add(shoot_sound);
-		
-		JLabel text_volume = new JLabel("Sound Volume:");
-		text_volume.setBounds(10, 460, 150, 30);
-		panel.add(text_volume);
-		volume = new JSlider(0,10);
-		volume.setBackground(Color.GREEN);
-		volume.setBounds(200, 460, 200, 30);
-		panel.add(volume);
-		volume.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_volume.setText("Shooter Volume: " + slider.getValue());
-	        }
-	    });
-		
-		JLabel text_pitch = new JLabel("Sound Pitch:");
-		text_pitch.setBounds(10, 510, 150, 30);
-		panel.add(text_pitch);
-		pitch = new JSlider(0,100);
-		pitch.setBounds(200, 510, 200, 30);
-		pitch.setBackground(Color.GREEN);
-		panel.add(pitch);
-		pitch.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_pitch.setText("Shooter Pitch: " + slider.getValue());
-	        }
-	    });
 		
 		return panel;
 	}

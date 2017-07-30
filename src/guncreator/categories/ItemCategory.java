@@ -3,24 +3,16 @@ package guncreator.categories;
 import java.awt.Color;
 
 import javax.swing.JLabel;
-import javax.swing.JSlider;
 import javax.swing.JTextField;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import org.bukkit.Material;
-import org.bukkit.Sound;
-
-import guns.weopons.data.GunSound;
+import guncreator.JGunSound;
 import guns.weopons.data.ItemData;
 
 public class ItemCategory extends Category<ItemData> {
 
 	private JTextField material_name;
 	private JTextField lore;
-	private JTextField sound;
-	private JSlider volume;
-	private JSlider pitch;
+	private JGunSound sound;
 
 	public ItemCategory() {
 		super("ITEM");
@@ -34,9 +26,7 @@ public class ItemCategory extends Category<ItemData> {
 			@Override
 			protected ItemData generateData() {
 				
-				GunSound item_sound = new GunSound(Sound.valueOf(sound.getText().toUpperCase()), volume.getValue(), pitch.getValue());
-				
-				return new ItemData(Material.valueOf(material_name.getText().toUpperCase()), lore.getText(), item_sound);
+				return new ItemData(Material.valueOf(material_name.getText().toUpperCase()), lore.getText(), sound.getGunSound());
 				
 			}
 
@@ -66,41 +56,11 @@ public class ItemCategory extends Category<ItemData> {
 		lore.setBounds(200, 60, 200, 30);
 		panel.add(lore);
 		
-		JLabel text_sound = new JLabel("Waffen Sound:");
-		text_sound.setBounds(10, 110, 150, 30);
-		panel.add(text_sound);
-		sound = new JTextField();
-		sound.setBackground(Color.LIGHT_GRAY);
-		sound.setBounds(200, 110, 200, 30);
+		//weapon sound
+		sound = new JGunSound("Waffen");
+		sound.setBounds(10, 110, 400, 300);
+		sound.setBackground(Color.GREEN);
 		panel.add(sound);
-		
-		JLabel text_volume = new JLabel("Sound Volume:");
-		text_volume.setBounds(10, 160, 150, 30);
-		panel.add(text_volume);
-		volume = new JSlider(0,10);
-		volume.setBackground(Color.GREEN);
-		volume.setBounds(200, 160, 200, 30);
-		panel.add(volume);
-		volume.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_volume.setText("Sound Volume: " + slider.getValue());
-	        }
-	    });
-		
-		JLabel text_pitch = new JLabel("Sound Pitch:");
-		text_pitch.setBounds(10, 210, 150, 30);
-		panel.add(text_pitch);
-		pitch = new JSlider(0,100);
-		pitch.setBounds(200, 210, 200, 30);
-		pitch.setBackground(Color.GREEN);
-		panel.add(pitch);
-		pitch.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_pitch.setText("Sound Pitch: " + slider.getValue());
-	        }
-	    });
 		
 		return panel;
 	}

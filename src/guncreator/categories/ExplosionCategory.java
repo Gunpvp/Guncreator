@@ -4,14 +4,10 @@ import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
-import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import org.bukkit.Sound;
-
+import guncreator.JGunSound;
 import guns.weopons.data.ExplosionData;
-import guns.weopons.data.GunSound;
 
 public class ExplosionCategory extends Category<ExplosionData> {
 
@@ -19,9 +15,7 @@ public class ExplosionCategory extends Category<ExplosionData> {
 	private JSlider radius;
 	private JSlider knockback;
 	private JSlider damage;
-	private JTextField shooter;
-	private JSlider volume;
-	private JSlider pitch;
+	private JGunSound shooter;
 	
 	public ExplosionCategory() {
 		super("EXPLOSION");
@@ -33,15 +27,13 @@ public class ExplosionCategory extends Category<ExplosionData> {
 		EditPanel<ExplosionData> panel = new EditPanel<ExplosionData>() {
 			
 			protected ExplosionData generateData() {
-				
-				GunSound shooter_sound = new GunSound(Sound.valueOf(shooter.getText().toUpperCase()), volume.getValue(), pitch.getValue());
-				
-				return new ExplosionData(explosion.isSelected(), radius.getValue()/10, knockback.getValue()/10, damage.getValue()/10, shooter_sound);
+								
+				return new ExplosionData(explosion.isSelected(), radius.getValue()/10, knockback.getValue()/10, damage.getValue()/10, shooter.getGunSound());
 			}
 
 			@Override
 			public void initWithData(ExplosionData data) {
-				// TODO Auto-generated method stub
+
 				
 			}
 			
@@ -103,42 +95,11 @@ public class ExplosionCategory extends Category<ExplosionData> {
 	        }
 		});
 		
-		//Sound
-		JLabel text_shooter = new JLabel("Explosions Sound:");
-		text_shooter.setBounds(10, 210, 150, 30);
-		panel.add(text_shooter);
-		shooter = new JTextField();
-		shooter.setBackground(Color.LIGHT_GRAY);
-		shooter.setBounds(200, 210, 200, 30);
+		//out of ammo
+		shooter = new JGunSound("Explosion");
+		shooter.setBounds(10, 210, 400, 300);
+		shooter.setBackground(Color.GREEN);
 		panel.add(shooter);
-		
-		JLabel text_volume = new JLabel("Sound Volume:");
-		text_volume.setBounds(10, 260, 150, 30);
-		panel.add(text_volume);
-		volume = new JSlider(0,10);
-		volume.setBackground(Color.GREEN);
-		volume.setBounds(200, 260, 200, 30);
-		panel.add(volume);
-		volume.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_volume.setText("Sound Volume: " + slider.getValue());
-	        }
-	    });
-		
-		JLabel text_pitch = new JLabel("Sound Pitch:");
-		text_pitch.setBounds(10, 310, 150, 30);
-		panel.add(text_pitch);
-		pitch = new JSlider(0,100);
-		pitch.setBounds(200, 310, 200, 30);
-		pitch.setBackground(Color.GREEN);
-		panel.add(pitch);
-		pitch.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_pitch.setText("Sound Pitch: " + slider.getValue());
-	        }
-	    });
 		
 		return panel;
 	}

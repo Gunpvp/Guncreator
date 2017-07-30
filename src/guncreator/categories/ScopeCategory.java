@@ -5,13 +5,10 @@ import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
-import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.bukkit.Sound;
-
-import guns.weopons.data.GunSound;
+import guncreator.JGunSound;
 import guns.weopons.data.ScopeData;
 
 public class ScopeCategory extends Category<ScopeData>{
@@ -20,9 +17,8 @@ public class ScopeCategory extends Category<ScopeData>{
 	private JCheckBox see_in_night;
 	private JSlider zoom_amount;
 	private JSlider spread;
-	private JTextField toggle_sound;
-	private JSlider toggle_sound_volume;
-	private JSlider toggle_sound_pitch;
+	private JGunSound toggle_sound;
+	
 	public ScopeCategory() {
 		super("SCOPE");
 
@@ -36,9 +32,7 @@ public class ScopeCategory extends Category<ScopeData>{
 			@Override
 			protected ScopeData generateData() {
 				
-				GunSound toggle = new GunSound(Sound.valueOf(toggle_sound.getText().toUpperCase()), toggle_sound_volume.getValue(), toggle_sound_pitch.getValue());
-				
-				return new ScopeData(scope.isSelected(), zoom_amount.getValue(), see_in_night.isSelected(), spread.getValue()/10, toggle);
+				return new ScopeData(scope.isSelected(), zoom_amount.getValue(), see_in_night.isSelected(), spread.getValue()/10, toggle_sound.getGunSound());
 			}
 
 			@Override
@@ -100,41 +94,10 @@ public class ScopeCategory extends Category<ScopeData>{
 		});
 		
 		//toggle sound
-		JLabel text_toggle_sound= new JLabel("Toggle Sound:");
-		text_toggle_sound.setBounds(10, 210, 150, 30);
-		panel.add(text_toggle_sound);
-		toggle_sound = new JTextField();
-		toggle_sound.setBackground(Color.LIGHT_GRAY);
-		toggle_sound.setBounds(200, 210, 200, 30);
+		toggle_sound = new JGunSound("Toggle");
+		toggle_sound.setBounds(10, 210, 400, 300);
+		toggle_sound.setBackground(Color.GREEN);
 		panel.add(toggle_sound);
-		
-		JLabel text_toggle_sound_volume = new JLabel("Toggle Volume:");
-		text_toggle_sound_volume.setBounds(10, 260, 150, 30);
-		panel.add(text_toggle_sound_volume);
-		toggle_sound_volume = new JSlider(0,10);
-		toggle_sound_volume.setBackground(Color.GREEN);
-		toggle_sound_volume.setBounds(200, 260, 200, 30);
-		panel.add(toggle_sound_volume );
-		toggle_sound_volume.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_toggle_sound_volume.setText("Toggle Volume: " + slider.getValue());
-	        }
-	    });
-		
-		JLabel text_toggle_sound_pitch = new JLabel("Toggle Pitch:");
-		text_toggle_sound_pitch.setBounds(10, 310, 150, 30);
-		panel.add(text_toggle_sound_pitch);
-		toggle_sound_pitch = new JSlider(0,100);
-		toggle_sound_pitch.setBounds(200, 310, 200, 30);
-		toggle_sound_pitch.setBackground(Color.GREEN);
-		panel.add(toggle_sound_pitch);
-		toggle_sound_pitch.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_toggle_sound_pitch.setText("Toggle Pitch: " + slider.getValue());
-	        }
-	    });
 		
 		return panel;
 	}

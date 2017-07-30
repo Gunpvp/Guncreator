@@ -3,17 +3,10 @@ package guncreator.categories;
 import java.awt.Color;
 
 import javax.swing.JLabel;
-import javax.swing.JSlider;
 import javax.swing.JTextField;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import org.bukkit.Material;
-import org.bukkit.Sound;
-
 import guncreator.JGunSound;
 import guns.weopons.data.AmmoData;
-import guns.weopons.data.GunSound;
 
 public class AmmoCategory extends Category<AmmoData>{
 
@@ -34,10 +27,7 @@ public class AmmoCategory extends Category<AmmoData>{
 			@Override
 			protected AmmoData generateData() {
 				
-				//GunSound out_of_ammo = new GunSound(Sound.valueOf(out_of_ammo_sound.getText().toUpperCase()), out_of_ammo_sound_volume.getValue(), out_of_ammo_sound_pitch.getValue());
-				//GunSound shoot_with_no_ammo = new GunSound(Sound.valueOf(shoot_with_no_ammo_sound.getText().toUpperCase()), shoot_with_no_ammo_sound_volume.getValue(), shoot_with_no_ammo_sound_pitch.getValue());
-				
-				return new AmmoData(Material.valueOf(material.getText().toUpperCase()), out_of_ammo_sound.getGunSound1(), shoot_with_no_ammo_sound.getGunSound1());				
+				return new AmmoData(Material.valueOf(material.getText().toUpperCase()), out_of_ammo_sound.getGunSound(), shoot_with_no_ammo_sound.getGunSound());				
 			}
 
 			@Override
@@ -61,13 +51,13 @@ public class AmmoCategory extends Category<AmmoData>{
 		panel.add(material);
 		
 		//out of ammo
-		out_of_ammo_sound = new JGunSound("Out of Ammo 1", "Out of Ammo 2");
+		out_of_ammo_sound = new JGunSound("Out of Ammo");
 		out_of_ammo_sound.setBounds(10, 60, 400, 300);
 		out_of_ammo_sound.setBackground(Color.GREEN);
 		panel.add(out_of_ammo_sound);
 		
 		//shoot with no ammo sound
-		shoot_with_no_ammo_sound = new JGunSound("No Ammo 1", "No Ammo 2");
+		shoot_with_no_ammo_sound = new JGunSound("No Ammo");
 		shoot_with_no_ammo_sound.setBounds(10, 360, 400, 300);
 		shoot_with_no_ammo_sound.setBackground(Color.GREEN);
 		panel.add(shoot_with_no_ammo_sound);
