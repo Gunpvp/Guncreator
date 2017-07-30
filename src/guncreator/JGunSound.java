@@ -19,7 +19,7 @@ public class JGunSound extends JPanel {
 	private JSlider volume_1, volume_2;
 	private JSlider pitch_1, pitch_2;
 
-	public JGunSound(String text_sound_1, String text_sound_2) {
+	public JGunSound(String text_sound_1) {
 		super(null);
 		
 		//sound 1
@@ -60,7 +60,7 @@ public class JGunSound extends JPanel {
 	    });
 		
 		//sound 2
-		JLabel lable_sound_2 = new JLabel(text_sound_2 + " Sound:");
+		JLabel lable_sound_2 = new JLabel(text_sound_1 + " Sound 2:");
 		lable_sound_2.setBounds(0, 150, 150, 30);
 		this.add(lable_sound_2);
 		sound_name_2 = new JTextField();
@@ -68,7 +68,7 @@ public class JGunSound extends JPanel {
 		sound_name_2.setBounds(190, 150, 200, 30);
 		this.add(sound_name_2);
 		
-		JLabel text_volume_2 = new JLabel(text_sound_2 + " Volume:");
+		JLabel text_volume_2 = new JLabel(text_sound_1 + " Volume 2:");
 		text_volume_2.setBounds(0, 200, 150, 30);
 		this.add(text_volume_2);
 		volume_2 = new JSlider(0,10);
@@ -78,11 +78,11 @@ public class JGunSound extends JPanel {
 		volume_2.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_volume_2.setText(text_sound_2 + " Volume: " + slider.getValue());
+	            text_volume_2.setText(text_sound_1 + " Volume 2: " + slider.getValue());
 	        }
 	    });
 		
-		JLabel text_pitch_2 = new JLabel(text_sound_2 + " Pitch:");
+		JLabel text_pitch_2 = new JLabel(text_sound_1 + " Pitch 2:");
 		text_pitch_2.setBounds(0, 250, 150, 30);
 		this.add(text_pitch_2);
 		pitch_2 = new JSlider(0,100);
@@ -92,20 +92,20 @@ public class JGunSound extends JPanel {
 		pitch_2.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_pitch_2.setText(text_sound_2 + " Pitch: " + slider.getValue());
+	            text_pitch_2.setText(text_sound_1 + " Pitch 2: " + slider.getValue());
 	        }
 	    });
 
 	}
 
-	public GunSound getGunSound1() {
-		return new GunSound(Sound.valueOf(sound_name_1.getText().toUpperCase()), volume_1.getValue(),
-				pitch_1.getValue());
+	public GunSound getGunSound() {
+		if (sound_name_2.getText() != null) {
+			return new GunSound(Sound.valueOf(sound_name_1.getText().toUpperCase()), volume_1.getValue(),
+					pitch_1.getValue()).addSound(Sound.valueOf(sound_name_2.getText().toUpperCase()), volume_2.getValue(),
+					pitch_2.getValue());
+		}else {
+			return new GunSound(Sound.valueOf(sound_name_1.getText().toUpperCase()), volume_1.getValue(),
+					pitch_1.getValue());
+		}
 	}
-
-	public GunSound getGunSound2() {
-		return new GunSound(Sound.valueOf(sound_name_2.getText().toUpperCase()), volume_2.getValue(),
-				pitch_2.getValue());
-	}
-
 }
