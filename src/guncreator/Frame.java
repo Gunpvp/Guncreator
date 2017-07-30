@@ -21,6 +21,7 @@ public class Frame extends JFrame {
 		new MainPanel((JPanel) super.getContentPane());
 		
 		super.setVisible(true);
+		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 }
