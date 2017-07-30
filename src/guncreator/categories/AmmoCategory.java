@@ -41,7 +41,7 @@ public class AmmoCategory extends Category<AmmoData>{
 			}
 
 			@Override
-			protected void initWithAmmo(AmmoData data) {
+			public void initWithData(AmmoData data) {
 				
 				material.setText(data.getMaterial().toString().toUpperCase());
 				

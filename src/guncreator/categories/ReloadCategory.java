@@ -48,7 +48,7 @@ public class ReloadCategory extends Category<ReloadData> {
 			}
 
 			@Override
-			protected void initWithAmmo(ReloadData data) {
+			public void initWithData(ReloadData data) {
 				// TODO Auto-generated method stub
 				
 			}

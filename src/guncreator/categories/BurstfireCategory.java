@@ -31,7 +31,7 @@ public class BurstfireCategory extends Category<BurstfireData>{
 			}
 
 			@Override
-			protected void initWithAmmo(BurstfireData data) {
+			public void initWithData(BurstfireData data) {
 				
 				
 			}

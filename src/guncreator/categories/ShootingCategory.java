@@ -47,7 +47,7 @@ public class ShootingCategory extends Category<ShootingData> {
 			}
 
 			@Override
-			protected void initWithAmmo(ShootingData data) {
+			public void initWithData(ShootingData data) {
 				// TODO Auto-generated method stub
 				
 			}

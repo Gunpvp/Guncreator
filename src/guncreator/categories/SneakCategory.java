@@ -34,7 +34,7 @@ public class SneakCategory extends Category<SneakData>{
 			}
 
 			@Override
-			protected void initWithAmmo(SneakData data) {
+			public void initWithData(SneakData data) {
 				// TODO Auto-generated method stub
 				
 			}

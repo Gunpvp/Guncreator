@@ -41,7 +41,7 @@ public class ItemCategory extends Category<ItemData> {
 			}
 
 			@Override
-			protected void initWithAmmo(ItemData data) {
+			public void initWithData(ItemData data) {
 				// TODO Auto-generated method stub
 				
 			}

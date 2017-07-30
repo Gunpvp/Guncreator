@@ -42,7 +42,7 @@ public class ScopeCategory extends Category<ScopeData>{
 			}
 
 			@Override
-			protected void initWithAmmo(ScopeData data) {
+			public void initWithData(ScopeData data) {
 				
 				
 			}

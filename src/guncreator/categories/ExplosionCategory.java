@@ -40,7 +40,7 @@ public class ExplosionCategory extends Category<ExplosionData> {
 			}
 
 			@Override
-			protected void initWithAmmo(ExplosionData data) {
+			public void initWithData(ExplosionData data) {
 				// TODO Auto-generated method stub
 				
 			}

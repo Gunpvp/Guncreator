@@ -45,7 +45,7 @@ public class HeadshotCategory extends Category<HeadshotData> {
 			}
 
 			@Override
-			protected void initWithAmmo(HeadshotData data) {
+			public void initWithData(HeadshotData data) {
 
 				
 			}

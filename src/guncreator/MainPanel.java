@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -23,10 +25,10 @@ import guncreator.categories.ReloadCategory;
 import guncreator.categories.ScopeCategory;
 import guncreator.categories.ShootingCategory;
 import guncreator.categories.SneakCategory;
+import guncreator.parser.Parser;
+import guns.weopons.data.GunData;
 
 public class MainPanel {
-	
-	private static MainPanel instance;
 	
 	private JPanel panel;
 	private EditPanel<? extends Serializable> before;
@@ -43,9 +45,10 @@ public class MainPanel {
 	private BurstfireCategory cat_burstfire;
 	private AmmoCategory cat_ammo;
 	private ScopeCategory cat_scope;
+
+	private JTextField name_of_gun;
 	
 	public MainPanel(JPanel panel) {
-		instance = this;
 		this.panel = panel;
 		this.init();
 	}
@@ -75,12 +78,28 @@ public class MainPanel {
 		/**
 		 * fill controll panel with stuff
 		 */
-		JTextField field = new JTextField("NAME OF GUN");
-		controll_panel.add(field);
+		name_of_gun = new JTextField("NAME OF GUN");
+		controll_panel.add(name_of_gun);
 		
 		JButton save = new JButton("SAVE");
+		
+		save.addActionListener(e -> {
+			
+			GunData data = generateGunData();
+			if (data != null) Parser.saveToFile(new File("weapons/" + data.getName() + ".weapon"), data);
+			
+		});
+		
 		controll_panel.add(save);
+		
 		JButton load = new JButton("LOAD");
+		
+		load.addActionListener(e -> {
+			
+			fillWithContent(Parser.loadFromFile(new File("weapons/" + name_of_gun.getText() + ".weapon")));
+			
+		});
+		
 		controll_panel.add(load);
 		
 		/**
@@ -132,8 +151,63 @@ public class MainPanel {
 		
 	}
 	
-	public static MainPanel getInstance() {
-		return instance;
+	/**
+	 * 
+	 * generates gun data from fields
+	 * 
+	 * @return generated gun data
+	 */
+	private GunData generateGunData() {
+		
+		if (!name_of_gun.getText().isEmpty()) {
+			
+			boolean valid = true;
+			
+			for (Category<? extends Serializable> cat : categories) {
+				if (!cat.isEverythingFilledOut()) valid = false;
+			}
+			
+			if (valid) {
+				
+				return new GunData(name_of_gun.getText(),
+						cat_item.getEditPanel().getData(), 
+						cat_shoot.getEditPanel().getData(),
+						cat_reload.getEditPanel().getData(),
+						cat_ammo.getEditPanel().getData(), 
+						cat_sneak.getEditPanel().getData(), 
+						cat_scope.getEditPanel().getData(), 
+						cat_burstfire.getEditPanel().getData(),
+						cat_headshot.getEditPanel().getData(),
+						cat_explosion.getEditPanel().getData());
+				
+			} else {
+				JOptionPane.showMessageDialog(null, "Fülle zuerst alle Felder aus!");
+			}
+			
+		}
+		
+		return null;
+		
+	}
+	
+	/**
+	 * 
+	 * init editpanels with data
+	 * 
+	 * @param data about gun
+	 */
+	private void fillWithContent(GunData data) {
+		
+		cat_item.getEditPanel().initWithData(data.getItemdata());
+		cat_shoot.getEditPanel().initWithData(data.getShootdata());
+		cat_reload.getEditPanel().initWithData(data.getReloaddata());
+		cat_ammo.getEditPanel().initWithData(data.getAmmodata());
+		cat_sneak.getEditPanel().initWithData(data.getSneakdata());
+		cat_scope.getEditPanel().initWithData(data.getScopedata());
+		cat_burstfire.getEditPanel().initWithData(data.getBurstfiredata());
+		cat_headshot.getEditPanel().initWithData(data.getHeadshotdata());
+		cat_explosion.getEditPanel().initWithData(data.getExplosion());
+		
 	}
 	
 }

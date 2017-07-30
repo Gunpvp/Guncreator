@@ -19,6 +19,6 @@ public abstract class EditPanel<DATA extends Serializable> extends JPanel {
 	}
 
 	protected abstract DATA generateData();
-	protected abstract void initWithAmmo(DATA data);
+	public abstract void initWithData(DATA data);
 
 }
