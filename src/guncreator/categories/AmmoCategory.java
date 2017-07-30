@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import org.bukkit.Material;
 import guncreator.JGunSound;
+import guncreator.utils.EnumChecker;
 import guns.weopons.data.AmmoData;
 
 public class AmmoCategory extends Category<AmmoData>{
@@ -66,8 +67,7 @@ public class AmmoCategory extends Category<AmmoData>{
 	}
 	@Override
 	public boolean isEverythingFilledOut() {
-		
-		return false;
+		return EnumChecker.isValidMaterial(material.getText()) && out_of_ammo_sound.isValid() && shoot_with_no_ammo_sound.isValid();
 	}
 
 }

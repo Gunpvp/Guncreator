@@ -11,6 +11,7 @@ import javax.swing.event.ChangeListener;
 
 import org.bukkit.Sound;
 
+import guncreator.utils.EnumChecker;
 import guns.weopons.data.GunSound;
 
 public class JGunSound extends JPanel {
@@ -97,9 +98,13 @@ public class JGunSound extends JPanel {
 	    });
 
 	}
-
+	
+	public boolean isValid() {
+		return EnumChecker.isValidSound(sound_name_1.getText()) && EnumChecker.isValidSound(sound_name_2.getText());
+	}
+	
 	public GunSound getGunSound() {
-		if (sound_name_2.getText() != null) {
+		if (!sound_name_2.getText().isEmpty()) {
 			return new GunSound(Sound.valueOf(sound_name_1.getText().toUpperCase()), volume_1.getValue(),
 					pitch_1.getValue()).addSound(Sound.valueOf(sound_name_2.getText().toUpperCase()), volume_2.getValue(),
 					pitch_2.getValue());
