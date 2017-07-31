@@ -37,19 +37,19 @@ public class ScopeCategory extends Category<ScopeData>{
 			
 		};
 		 
-			JBox scope = new JBox("Waffe kann zoomen");
+			scope = new JBox("Waffe kann zoomen");
 			panel.addComponent(scope);
 			
-			JAdjustbar zoom_amount = new JAdjustbar("Zoomstärke", "", 0, 20, 1);
+			zoom_amount = new JAdjustbar("Zoomstärke", "", 0, 20, 1);
 			panel.addComponent(zoom_amount);
 			
-			JBox see_in_night = new JBox("Zoom hat Nachtsicht");
+			see_in_night = new JBox("Zoom hat Nachtsicht");
 			panel.addComponent(see_in_night);
 			
-			JAdjustbar spread = new JAdjustbar("Streuung", "", 0, 5, 0.1f);
+			spread = new JAdjustbar("Streuung", "", 0, 5, 0.1f);
 			panel.addComponent(spread);
 			
-			JGunSound toggle_sound = new JGunSound("Umschalt");
+			toggle_sound = new JGunSound("Umschalt");
 			panel.addComponent(toggle_sound);
 		
 		return panel;

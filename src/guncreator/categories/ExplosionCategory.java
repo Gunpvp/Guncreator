@@ -19,6 +19,7 @@ public class ExplosionCategory extends Category<ExplosionData> {
 		
 		EditPanel<ExplosionData> panel = new EditPanel<ExplosionData>() {
 			
+			@Override
 			protected ExplosionData generateData() {
 								
 				return new ExplosionData(explosion.getValue(), radius.getValue(), knockback.getValue(), damage.getValue(), shooter.getGunSound());
@@ -35,19 +36,19 @@ public class ExplosionCategory extends Category<ExplosionData> {
 			
 		};
 		
-		JBox explosion = new JBox("Waffe erzeugt Explosion");
+		explosion = new JBox("Waffe erzeugt Explosion");
 		panel.addComponent(explosion);
 
-		JAdjustbar radius = new JAdjustbar("Radius", "Blocks", 0, 15, 1);
+		radius = new JAdjustbar("Radius", "Blocks", 0, 15, 1);
 		panel.addComponent(radius);
 		
-		JAdjustbar knockback = new JAdjustbar("Rückstoß", "Blocks", 0, 15, 1);
+		knockback = new JAdjustbar("Rückstoß", "Blocks", 0, 15, 1);
 		panel.addComponent(knockback);
 		
-		JAdjustbar damage = new JAdjustbar("Schaden", "halbe Herzen", 0, 30, 1);
+		damage = new JAdjustbar("Schaden", "halbe Herzen", 0, 30, 1);
 		panel.addComponent(damage);
 		
-		JGunSound shooter = new JGunSound("Explosions");
+		shooter = new JGunSound("Explosions");
 		panel.addComponent(shooter);
 		
 		return panel;

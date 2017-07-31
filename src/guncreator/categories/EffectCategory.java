@@ -32,16 +32,16 @@ public class EffectCategory extends Category<EffectData> {
 			}
 		};
 		
-		JBox effecting = new JBox("Waffe erzeugt Effekt");
+		effecting = new JBox("Waffe erzeugt Effekt");
 		panel.addComponent(effecting);
 		
-		JInputField effect_name = new JInputField("Name des Effektes:");
+		effect_name = new JInputField("Name des Effektes:");
 		panel.addComponent(effect_name);
 		
-		JAdjustbar delay = new JAdjustbar("Dauer", "s", 0, 60, 1);
+		delay = new JAdjustbar("Dauer", "s", 0, 60, 1);
 		panel.addComponent(delay);
 		
-		JAdjustbar amplitude = new JAdjustbar("Effektstärke", "", 0, 20, 1);
+		amplitude = new JAdjustbar("Effektstärke", "", 0, 20, 1);
 		panel.addComponent(amplitude);
 		
 		return panel;
