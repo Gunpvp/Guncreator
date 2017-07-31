@@ -1,7 +1,5 @@
 package guncreator.categories;
 
-import javax.swing.JTextField;
-
 import org.bukkit.Material;
 
 import guncreator.JGunSound;
@@ -9,9 +7,9 @@ import guns.weopons.data.ItemData;
 
 public class ItemCategory extends Category<ItemData> {
 
-	private JTextField material_name;
-	private JTextField lore;
 	private JGunSound sound;
+	private JInputField material;
+	private JInputField lore;
 
 	public ItemCategory() {
 		super("ITEM");
@@ -25,22 +23,25 @@ public class ItemCategory extends Category<ItemData> {
 			@Override
 			protected ItemData generateData() {
 				
-				return new ItemData(Material.valueOf(material_name.getText().toUpperCase()), lore.getText(), sound.getGunSound());
+				return new ItemData(Material.valueOf(material.getValue().toUpperCase()), lore.getValue(), sound.getGunSound());
 				
 			}
 
 			@Override
 			public void initWithData(ItemData data) {
-				// TODO Auto-generated method stub
+				
+				material.setValue(data.getMaterial().toString().toUpperCase());
+				lore.setValue(data.getLore());
+				sound.setSound(data.getSound());
 				
 			}
 			
 		};
 		
-		JInputField material = new JInputField("Name des Materials:");
+		material = new JInputField("Name des Materials:");
 		panel.addComponent(material);
 		
-		JInputField lore = new JInputField("Beschreibung des Items:");
+		lore = new JInputField("Beschreibung des Items:");
 		panel.addComponent(lore);
 		
 		//weapon sound

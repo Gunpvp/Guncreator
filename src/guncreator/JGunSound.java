@@ -104,8 +104,17 @@ public class JGunSound extends JPanel {
 		}
 	}
 	
-	public void setText(String text) {
-		sound_name_1.setText(text);
-		sound_name_2.setText(text);
+	public void setSound(GunSound sound) {
+		
+		sound_name_1.setText(sound.getSounds().get(0).getSound().toString().toUpperCase());
+		volume_1.setValue(sound.getSounds().get(0).getVolume());
+		pitch_1.setValue(sound.getSounds().get(0).getPitch());
+		
+		if (sound.getSounds().size()>1) {
+			sound_name_2.setText(sound.getSounds().get(1).getSound().toString().toUpperCase());
+			volume_2.setValue(sound.getSounds().get(1).getVolume());
+			volume_2.setValue(sound.getSounds().get(1).getVolume());
+			pitch_2.setValue(sound.getSounds().get(1).getPitch());
+		}
 	}
 }

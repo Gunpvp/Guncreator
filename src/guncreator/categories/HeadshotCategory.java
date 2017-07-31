@@ -35,8 +35,8 @@ public class HeadshotCategory extends Category<HeadshotData> {
 
 			@Override
 			public void initWithData(HeadshotData data) {
-				shooter_sound.setText(data.getShooterSound().toString().toUpperCase());
-				victim_sound.setText(data.getVictimSound().toString().toUpperCase());
+				shooter_sound.setSound(data.getShooterSound());
+				victim_sound.setSound(data.getVictimSound());
 				headshot.setSelected(data.isHeadshotEnabled());
 				firework.setSelected(data.isFireworkEnabled());
 				bonus_damage.setValue(((int)data.getBounsDamage()*10));
