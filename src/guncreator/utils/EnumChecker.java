@@ -1,8 +1,8 @@
 package guncreator.utils;
 
-import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.potion.PotionEffectType;
 
 public class EnumChecker {
 
@@ -39,15 +39,8 @@ public class EnumChecker {
 	}
 	
 	public static boolean isValidEffect(String effect) {
-		try {
-			Effect.valueOf(effect);
-			
-			return true;
-			
-		} catch (IllegalArgumentException e) {
-			
-			return false;
-			
-		}
+		
+		return PotionEffectType.getByName(effect) != null;
+		
 	}
 }
