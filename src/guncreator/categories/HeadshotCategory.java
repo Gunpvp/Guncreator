@@ -1,19 +1,12 @@
 package guncreator.categories;
 
-import java.awt.Color;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import guns.weopons.data.HeadshotData;
 
 public class HeadshotCategory extends Category<HeadshotData> {
 
-	private JCheckBox headshot;
-	private JCheckBox firework;
-	private JSlider bonus_damage;
+	private JBox headshot;
+	private JBox firework;
+	private JAdjustbar bonus_damage;
 	private JGunSound shooter_sound;
 	private JGunSound victim_sound;
 	
@@ -29,7 +22,7 @@ public class HeadshotCategory extends Category<HeadshotData> {
 			@Override
 			protected HeadshotData generateData() {
 								
-				return new HeadshotData(headshot.isSelected(), bonus_damage.getValue()/10, firework.isSelected(), shooter_sound.getGunSound(), victim_sound.getGunSound());
+				return new HeadshotData(headshot.getValue(), bonus_damage.getValue(), firework.getValue(), shooter_sound.getGunSound(), victim_sound.getGunSound());
 				
 			}
 
@@ -37,61 +30,27 @@ public class HeadshotCategory extends Category<HeadshotData> {
 			public void initWithData(HeadshotData data) {
 				shooter_sound.setSound(data.getShooterSound());
 				victim_sound.setSound(data.getVictimSound());
-				headshot.setSelected(data.isHeadshotEnabled());
-				firework.setSelected(data.isFireworkEnabled());
-				bonus_damage.setValue(((int)data.getBounsDamage()*10));
+				headshot.setValue(data.isHeadshotEnabled());
+				firework.setValue(data.isFireworkEnabled());
+				bonus_damage.setValue(((int)data.getBounsDamage()));
 			}
 			
 		};
-		 
-		panel.setLayout(null);
 		
-		//Headshot available
-		JLabel text_headshot = new JLabel("Headshot möglich:");
-		text_headshot.setBounds(10, 10, 150, 30);
-		panel.add(text_headshot);
-		headshot = new JCheckBox();
-		headshot.setBackground(Color.GREEN);
-		headshot.setBounds(200, 10, 30, 30);
-		panel.add(headshot);
+		headshot = new JBox("Headshot möglich");
+		panel.addComponent(headshot);
 		
-		//Bonus Damage
-		JLabel text_bonus_damage = new JLabel("Bonus Schaden:");
-		text_bonus_damage.setBounds(10, 60, 150, 30);
-		panel.add(text_bonus_damage);
-		bonus_damage = new JSlider(0,200);
-		bonus_damage.setBackground(Color.GREEN);
-		bonus_damage.setBounds(200, 60, 200, 30);
-		panel.add(bonus_damage);
-		bonus_damage.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_bonus_damage.setText("Bonus Schaden: " + slider.getValue()/10f);
-	        }
-		});
+		firework = new JBox("Feuerwerk");
+		panel.addComponent(firework);
 		
-		//Firework Available
-		JLabel text_firework = new JLabel("Feuerwerk Animation:");
-		text_firework.setBounds(10, 110, 150, 30);
-		panel.add(text_firework);
-		firework = new JCheckBox();
-		firework.setBackground(Color.GREEN);
-		firework.setBounds(200, 110, 30, 30);
-		panel.add(firework);
+		bonus_damage = new JAdjustbar("Bonusschaden", "halbe Herzen", 0, 30, 1);
+		panel.addComponent(bonus_damage);
+
+		shooter_sound = new JGunSound("Shooter Sound");
+		panel.addComponent(shooter_sound);
 		
-		
-		//Shooter Sound
-		shooter_sound = new JGunSound("Shooter");
-		shooter_sound.setBounds(10, 160, 400, 300);
-		shooter_sound.setBackground(Color.GREEN);
-		panel.add(shooter_sound);
-		
-		//Victim Sound
-		victim_sound = new JGunSound("Victim");
-		victim_sound.setBounds(10, 460, 400, 300);
-		victim_sound.setBackground(Color.GREEN);
-		panel.add(victim_sound);
-		
+		victim_sound = new JGunSound("Victim Sound");
+		panel.addComponent(victim_sound);
 		
 		return panel;
 	}
