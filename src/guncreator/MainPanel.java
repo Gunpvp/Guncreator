@@ -27,7 +27,7 @@ import guncreator.categories.ScopeCategory;
 import guncreator.categories.ShootingCategory;
 import guncreator.categories.SneakCategory;
 import guncreator.parser.Parser;
-import guns.weopons.data.GunData;
+import guns.weapons.data.GunData;
 
 public class MainPanel {
 	

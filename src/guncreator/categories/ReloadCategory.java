@@ -1,6 +1,6 @@
 package guncreator.categories;
 
-import guns.weopons.data.ReloadData;
+import guns.weapons.data.ReloadData;
 
 public class ReloadCategory extends Category<ReloadData> {
 

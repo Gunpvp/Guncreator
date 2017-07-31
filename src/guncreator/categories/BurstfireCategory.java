@@ -1,6 +1,6 @@
 package guncreator.categories;
 
-import guns.weopons.data.BurstfireData;
+import guns.weapons.data.BurstfireData;
 
 public class BurstfireCategory extends Category<BurstfireData>{
 

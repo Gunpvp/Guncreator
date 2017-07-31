@@ -1,6 +1,6 @@
 package guncreator.categories;
 
-import guns.weopons.data.ShootingData;
+import guns.weapons.data.ShootingData;
 
 public class ShootingCategory extends Category<ShootingData> {
 

@@ -16,7 +16,7 @@ import javax.swing.event.ChangeListener;
 import org.bukkit.Sound;
 
 import guncreator.utils.EnumChecker;
-import guns.weopons.data.GunSound;
+import guns.weapons.data.GunSound;
 
 public class JGunSound extends JPanel {
 

@@ -1,6 +1,6 @@
 package guncreator.categories;
 
-import guns.weopons.data.SneakData;
+import guns.weapons.data.SneakData;
 
 public class SneakCategory extends Category<SneakData>{
 

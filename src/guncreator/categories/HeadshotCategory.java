@@ -1,6 +1,6 @@
 package guncreator.categories;
 
-import guns.weopons.data.HeadshotData;
+import guns.weapons.data.HeadshotData;
 
 public class HeadshotCategory extends Category<HeadshotData> {
 

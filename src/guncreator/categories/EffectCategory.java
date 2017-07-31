@@ -1,7 +1,7 @@
 package guncreator.categories;
 
 import guncreator.utils.EnumChecker;
-import guns.weopons.data.EffectData;
+import guns.weapons.data.EffectData;
 
 public class EffectCategory extends Category<EffectData> {
 

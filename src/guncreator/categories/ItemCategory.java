@@ -3,7 +3,7 @@ package guncreator.categories;
 import org.bukkit.Material;
 
 import guncreator.utils.EnumChecker;
-import guns.weopons.data.ItemData;
+import guns.weapons.data.ItemData;
 
 public class ItemCategory extends Category<ItemData> {
 

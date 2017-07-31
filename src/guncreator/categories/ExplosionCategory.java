@@ -1,6 +1,6 @@
 package guncreator.categories;
 
-import guns.weopons.data.ExplosionData;
+import guns.weapons.data.ExplosionData;
 
 public class ExplosionCategory extends Category<ExplosionData> {
 
