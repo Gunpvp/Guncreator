@@ -134,6 +134,9 @@ public class MainPanel {
 		cat_scope = new ScopeCategory();
 		categories.add(cat_scope);
 		
+		cat_effect = new EffectCategory();
+		categories.add(cat_effect);
+		
 		for (Category<? extends Serializable> category : categories) {
 			JButton button = new JButton(category.getName());
 			button.setBackground(Color.LIGHT_GRAY);

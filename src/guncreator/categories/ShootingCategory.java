@@ -40,7 +40,8 @@ public class ShootingCategory extends Category<ShootingData> {
 
 			@Override
 			public void initWithData(ShootingData data) {
-				// TODO Auto-generated method stub
+				
+				
 				
 			}
 		};
@@ -51,14 +52,14 @@ public class ShootingCategory extends Category<ShootingData> {
 		JLabel text_delay_between_shots = new JLabel("Schussverzögerung:");
 		text_delay_between_shots.setBounds(10, 10, 150, 30);
 		panel.add(text_delay_between_shots);
-		delay_between_shots = new JSlider(0,200);
+		delay_between_shots = new JSlider(0,100);
 		delay_between_shots.setBackground(Color.GREEN);
 		delay_between_shots.setBounds(200, 10, 200, 30);
 		panel.add(delay_between_shots);
 		delay_between_shots.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_delay_between_shots.setText("Schussverzögerung: " + slider.getValue()/10);
+	            text_delay_between_shots.setText("Schussverzögerung: " + slider.getValue());
 	        }
 		});
 		
@@ -73,7 +74,7 @@ public class ShootingCategory extends Category<ShootingData> {
 		recoil.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_recoil.setText("Rückstoß: " + slider.getValue());
+	            text_recoil.setText("Rückstoß: " + slider.getValue()/10f);
 	        }
 		});
 		
@@ -81,7 +82,7 @@ public class ShootingCategory extends Category<ShootingData> {
 		JLabel text_projectiles = new JLabel("Projektilanzahl:");
 		text_projectiles.setBounds(10, 110, 150, 30);
 		panel.add(text_projectiles);
-		projectiles = new JSlider(0,50);
+		projectiles = new JSlider(0,10);
 		projectiles.setBackground(Color.GREEN);
 		projectiles.setBounds(200, 110, 200, 30);
 		panel.add(projectiles);
@@ -96,14 +97,14 @@ public class ShootingCategory extends Category<ShootingData> {
 		JLabel text_damage = new JLabel("Schaden:");
 		text_damage.setBounds(10, 160, 150, 30);
 		panel.add(text_damage);
-		damage = new JSlider(0,200);
+		damage = new JSlider(0,300);
 		damage.setBackground(Color.GREEN);
 		damage.setBounds(200, 160, 200, 30);
 		panel.add(damage);
 		damage.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_damage.setText("Schaden: " + slider.getValue()/10);
+	            text_damage.setText("Schaden: " + slider.getValue()/10f);
 	        }
 		});
 		
@@ -112,7 +113,7 @@ public class ShootingCategory extends Category<ShootingData> {
 		JLabel text_speed = new JLabel("Projektilgeschw.:");
 		text_speed.setBounds(10, 210, 150, 30);
 		panel.add(text_speed);
-		speed = new JSlider(0,20);
+		speed = new JSlider(0,15);
 		speed.setBackground(Color.GREEN);
 		speed.setBounds(200, 210, 200, 30);
 		panel.add(speed);
@@ -164,7 +165,7 @@ public class ShootingCategory extends Category<ShootingData> {
 		
 		//Shooter Sound
 		shoot_sound = new JGunSound("Schuss");
-		shoot_sound.setBounds(10, 360, 400, 300);
+		shoot_sound.setBounds(10, 410, 400, 300);
 		shoot_sound.setBackground(Color.GREEN);
 		panel.add(shoot_sound);
 		
@@ -173,7 +174,7 @@ public class ShootingCategory extends Category<ShootingData> {
 
 	@Override
 	public boolean isEverythingFilledOut() {
-		return false;
+		return shoot_sound.isDataValid();
 	}
 
 }

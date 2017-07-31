@@ -4,8 +4,8 @@ import guns.weopons.data.EffectData;
 
 public class EffectCategory extends Category<EffectData> {
 
-	public EffectCategory(String name) {
-		super(name);
+	public EffectCategory() {
+		super("EFFECT");
 	}
 
 	@Override
