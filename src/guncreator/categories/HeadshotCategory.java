@@ -35,8 +35,11 @@ public class HeadshotCategory extends Category<HeadshotData> {
 
 			@Override
 			public void initWithData(HeadshotData data) {
-
-				
+				shooter_sound.setText(data.getShooterSound().toString().toUpperCase());
+				victim_sound.setText(data.getVictimSound().toString().toUpperCase());
+				headshot.setSelected(data.isHeadshotEnabled());
+				firework.setSelected(data.isFireworkEnabled());
+				bonus_damage.setValue(((int)data.getBounsDamage()*10));
 			}
 			
 		};
@@ -63,7 +66,7 @@ public class HeadshotCategory extends Category<HeadshotData> {
 		bonus_damage.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_bonus_damage.setText("Bonus Schaden: " + slider.getValue()/10);
+	            text_bonus_damage.setText("Bonus Schaden: " + slider.getValue()/10f);
 	        }
 		});
 		
@@ -95,7 +98,7 @@ public class HeadshotCategory extends Category<HeadshotData> {
 
 	@Override
 	public boolean isEverythingFilledOut() {
-		return false;
+		return shooter_sound.isDataValid() && victim_sound.isDataValid();
 	}
 
 }
