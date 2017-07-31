@@ -2,7 +2,6 @@ package guncreator.categories;
 
 import org.bukkit.Material;
 
-import guncreator.JGunSound;
 import guns.weopons.data.ItemData;
 
 public class ItemCategory extends Category<ItemData> {
@@ -43,6 +42,12 @@ public class ItemCategory extends Category<ItemData> {
 		
 		lore = new JInputField("Beschreibung des Items:");
 		panel.addComponent(lore);
+		
+		JAdjustbar bar = new JAdjustbar("Test Slider:", "Ticks", 0, 2, 0.1f);
+		panel.addComponent(bar);
+		
+		JBox box = new JBox("Test Box:");
+		panel.addComponent(box);
 		
 		//weapon sound
 		sound = new JGunSound("Waffen");

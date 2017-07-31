@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import org.bukkit.Material;
-import guncreator.JGunSound;
+
 import guncreator.utils.EnumChecker;
 import guns.weopons.data.AmmoData;
 

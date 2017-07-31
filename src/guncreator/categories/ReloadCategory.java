@@ -8,7 +8,6 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import guncreator.JGunSound;
 import guns.weopons.data.ReloadData;
 
 public class ReloadCategory extends Category<ReloadData> {

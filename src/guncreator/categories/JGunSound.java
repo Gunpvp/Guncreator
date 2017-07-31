@@ -1,4 +1,4 @@
-package guncreator;
+package guncreator.categories;
 
 import java.awt.Color;
 import java.awt.GridLayout;
