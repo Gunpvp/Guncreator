@@ -56,7 +56,7 @@ public class ExplosionCategory extends Category<ExplosionData> {
 
 	@Override
 	public boolean isEverythingFilledOut() {
-		return shooter.isDataValid();
+		return shooter.isDataValid() || !explosion.getValue();
 	}
 
 }

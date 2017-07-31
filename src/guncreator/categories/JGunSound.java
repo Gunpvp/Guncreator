@@ -90,7 +90,7 @@ public class JGunSound extends JPanel {
 	}
 	
 	public boolean isDataValid() {
-		return EnumChecker.isValidSound(sound_name_1.getText()) && EnumChecker.isValidSound(sound_name_2.getText());
+		return EnumChecker.isValidSound(sound_name_1.getText()) && (EnumChecker.isValidSound(sound_name_2.getText()) || sound_name_2.getText().isEmpty());
 	}
 	
 	public GunSound getGunSound() {

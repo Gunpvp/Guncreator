@@ -58,7 +58,7 @@ public class ScopeCategory extends Category<ScopeData>{
 	@Override
 	public boolean isEverythingFilledOut() {
 
-		return toggle_sound.isDataValid();
+		return !scope.getValue() || toggle_sound.isDataValid();
 	}
 
 }
