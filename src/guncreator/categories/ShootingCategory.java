@@ -10,6 +10,7 @@ public class ShootingCategory extends Category<ShootingData> {
 	private JAdjustbar damage; //float
 	private JAdjustbar speed;
 	private JBox drag_down;
+	private JBox projectiles_burn;
 	private JAdjustbar drag_distance;
 	private JAdjustbar spread; //float
 	private JGunSound shoot_sound;	
@@ -26,7 +27,7 @@ public class ShootingCategory extends Category<ShootingData> {
 			@Override
 			protected ShootingData generateData() {
 				
-				return new ShootingData((int)delay_between_shots.getValue(), recoil.getValue(), (int)projectiles.getValue(), damage.getValue(), (int) speed.getValue(), drag_down.getValue(), (int) drag_distance.getValue(), spread.getValue(), shoot_sound.getGunSound());
+				return new ShootingData((int)delay_between_shots.getValue(), recoil.getValue(), (int)projectiles.getValue(), damage.getValue(), (int) speed.getValue(), drag_down.getValue(), (int) drag_distance.getValue(), spread.getValue(), shoot_sound.getGunSound(), projectiles_burn.getValue());
 			}
 
 			@Override
@@ -41,7 +42,7 @@ public class ShootingCategory extends Category<ShootingData> {
 				drag_distance.setValue(data.getDragDistance());
 				spread.setValue(data.getSpread());
 				shoot_sound.setSound(data.getShootSound());
-				
+				projectiles_burn.setValue(data.isProjectilesBurn());				
 			}
 		};
 		
@@ -69,6 +70,10 @@ public class ShootingCategory extends Category<ShootingData> {
 		//drag down
 		drag_down = new JBox("Drag Down:");
 		panel.addComponent(drag_down);
+		
+		//is burning
+		projectiles_burn = new JBox("Projektile brennen:");
+		panel.addComponent(projectiles_burn);
 		
 		//drag distance
 		drag_distance = new JAdjustbar("Dag Distance:", "Blocks", 0,20, 1);
