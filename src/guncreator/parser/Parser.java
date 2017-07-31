@@ -16,7 +16,7 @@ public class Parser {
 		
 		if (!file.exists())
 			try {
-				new File("weapons/").mkdir();
+				new File("weapons/").mkdirs();
 				file.createNewFile();
 			} catch (IOException e1) {
 				e1.printStackTrace();
