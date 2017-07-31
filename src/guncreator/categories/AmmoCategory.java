@@ -24,13 +24,13 @@ public class AmmoCategory extends Category<AmmoData>{
 			@Override
 			protected AmmoData generateData() {
 				
-				return new AmmoData(Material.valueOf(material.getValue().toUpperCase()), out_of_ammo_sound.getGunSound(), shoot_with_no_ammo_sound.getGunSound());				
+				return new AmmoData(Material.valueOf(material.getValue()), out_of_ammo_sound.getGunSound(), shoot_with_no_ammo_sound.getGunSound());				
 			}
 
 			@Override
 			public void initWithData(AmmoData data) {
 				
-				material.setValue(data.getMaterial().toString().toUpperCase());
+				material.setValue(data.getMaterial().toString());
 				out_of_ammo_sound.setSound(data.getOutOfAmmoSound());
 				shoot_with_no_ammo_sound.setSound(data.getShootWithNoAmmoSound());
 			}
