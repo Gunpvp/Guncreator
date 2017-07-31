@@ -113,4 +113,9 @@ public class JGunSound extends JPanel {
 					pitch_1.getValue());
 		}
 	}
+	
+	public void setText(String text) {
+		sound_name_1.setText(text);
+		sound_name_2.setText(text);
+	}
 }
