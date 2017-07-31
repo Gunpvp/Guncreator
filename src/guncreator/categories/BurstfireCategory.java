@@ -26,6 +26,8 @@ public class BurstfireCategory extends Category<BurstfireData>{
 			@Override
 			public void initWithData(BurstfireData data) {
 				
+				shots_per_burst.setValue(data.getShotsPerBurst());
+				delay_between.setValue(data.getDelay_between());
 				
 			}
 		};
@@ -44,7 +46,7 @@ public class BurstfireCategory extends Category<BurstfireData>{
 
 	@Override
 	public boolean isEverythingFilledOut() {
-		return false;
+		return true;
 	}
 
 }

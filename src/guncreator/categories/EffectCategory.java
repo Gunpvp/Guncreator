@@ -49,7 +49,7 @@ public class EffectCategory extends Category<EffectData> {
 
 	@Override
 	public boolean isEverythingFilledOut() {
-		return EnumChecker.isValidEffect(effect_name.getValue());
+		return (EnumChecker.isValidEffect(effect_name.getValue())) || !effecting.getValue();
 	}
 
 }
