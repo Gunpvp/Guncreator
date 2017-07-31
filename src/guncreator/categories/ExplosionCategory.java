@@ -1,20 +1,13 @@
 package guncreator.categories;
 
-import java.awt.Color;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import guns.weopons.data.ExplosionData;
 
 public class ExplosionCategory extends Category<ExplosionData> {
 
-	private JCheckBox explosion;
-	private JSlider radius;
-	private JSlider knockback;
-	private JSlider damage;
+	private JBox explosion;
+	private JAdjustbar radius;
+	private JAdjustbar knockback;
+	private JAdjustbar damage;
 	private JGunSound shooter;
 	
 	public ExplosionCategory() {
@@ -28,85 +21,41 @@ public class ExplosionCategory extends Category<ExplosionData> {
 			
 			protected ExplosionData generateData() {
 								
-				return new ExplosionData(explosion.isSelected(), radius.getValue()/10, knockback.getValue()/10, damage.getValue()/10, shooter.getGunSound());
+				return new ExplosionData(explosion.getValue(), radius.getValue(), knockback.getValue(), damage.getValue(), shooter.getGunSound());
 			}
 
 			@Override
 			public void initWithData(ExplosionData data) {
-
-				
+				explosion.setValue(data.isExploding());
+				radius.setValue(data.getRadius());
+				knockback.setValue(data.getKnockback());
+				damage.setValue(data.getDamage());
+				shooter.setSound(data.getShooter());
 			}
 			
 		};
 		
-		panel.setLayout(null);
+		JBox explosion = new JBox("Waffe erzeugt Explosion");
+		panel.addComponent(explosion);
+
+		JAdjustbar radius = new JAdjustbar("Radius", "Blocks", 0, 15, 1);
+		panel.addComponent(radius);
 		
-		//Explosion available
-		JLabel text_explosion = new JLabel("Waffe erzeugt Explosion:");
-		text_explosion.setBounds(10, 10, 150, 30);
-		panel.add(text_explosion);
-		explosion = new JCheckBox();
-		explosion.setBackground(Color.GREEN);
-		explosion.setBounds(200, 10, 30, 30);
-		panel.add(explosion);
+		JAdjustbar knockback = new JAdjustbar("Rückstoß", "Blocks", 0, 15, 1);
+		panel.addComponent(knockback);
 		
-		//Radius
-		JLabel text_radius = new JLabel("Explosionsradius:");
-		text_radius.setBounds(10, 60, 150, 30);
-		panel.add(text_radius);
-		radius = new JSlider(0,500);
-		radius.setBackground(Color.GREEN);
-		radius.setBounds(200, 60, 200, 30);
-		panel.add(radius);
-		radius.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_radius.setText("Explosionsradius: " + slider.getValue()/10);
-	        }
-		});
+		JAdjustbar damage = new JAdjustbar("Schaden", "halbe Herzen", 0, 30, 1);
+		panel.addComponent(damage);
 		
-		//Knockback
-		JLabel text_knockback = new JLabel("Explosionsrückstoß:");
-		text_knockback.setBounds(10, 110, 150, 30);
-		panel.add(text_knockback);
-		knockback = new JSlider(0,100);
-		knockback.setBackground(Color.GREEN);
-		knockback.setBounds(200, 110, 200, 30);
-		panel.add(knockback);
-		knockback.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_knockback.setText("Explosionsrückstoß: " + slider.getValue()/10);
-	        }
-		});
-		
-		//Damage
-		JLabel text_damage = new JLabel("Explosionschaden:");
-		text_damage.setBounds(10, 160, 150, 30);
-		panel.add(text_damage);
-		damage = new JSlider(0,200);
-		damage.setBackground(Color.GREEN);
-		damage.setBounds(200, 160, 200, 30);
-		panel.add(damage);
-		damage.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_damage.setText("Explosionschaden: " + slider.getValue()/10);
-	        }
-		});
-		
-		//out of ammo
-		shooter = new JGunSound("Explosion");
-		shooter.setBounds(10, 210, 400, 300);
-		shooter.setBackground(Color.GREEN);
-		panel.add(shooter);
+		JGunSound shooter = new JGunSound("Explosions");
+		panel.addComponent(shooter);
 		
 		return panel;
 	}
 
 	@Override
 	public boolean isEverythingFilledOut() {
-		return false;
+		return shooter.isDataValid();
 	}
 
 }
