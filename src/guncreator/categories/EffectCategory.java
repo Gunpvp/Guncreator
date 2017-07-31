@@ -28,7 +28,7 @@ public class EffectCategory extends Category<EffectData> {
 			
 			@Override
 			protected EffectData generateData() {
-				return new EffectData(effecting.getValue(), effect_name.getValue(), ((int)delay.getValue()*10), ((int)amplitude.getValue()*10));
+				return new EffectData(effecting.getValue(), effect_name.getValue(), ((int)delay.getValue()), ((int)amplitude.getValue()));
 			}
 		};
 		
