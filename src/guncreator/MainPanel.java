@@ -18,6 +18,7 @@ import guncreator.categories.AmmoCategory;
 import guncreator.categories.BurstfireCategory;
 import guncreator.categories.Category;
 import guncreator.categories.EditPanel;
+import guncreator.categories.EffectCategory;
 import guncreator.categories.ExplosionCategory;
 import guncreator.categories.HeadshotCategory;
 import guncreator.categories.ItemCategory;
@@ -45,6 +46,7 @@ public class MainPanel {
 	private BurstfireCategory cat_burstfire;
 	private AmmoCategory cat_ammo;
 	private ScopeCategory cat_scope;
+	private EffectCategory cat_effect;
 
 	private JTextField name_of_gun;
 	
@@ -178,7 +180,8 @@ public class MainPanel {
 						cat_scope.getEditPanel().getData(), 
 						cat_burstfire.getEditPanel().getData(),
 						cat_headshot.getEditPanel().getData(),
-						cat_explosion.getEditPanel().getData());
+						cat_explosion.getEditPanel().getData(),
+						cat_effect.getEditPanel().getData());
 				
 			} else {
 				JOptionPane.showMessageDialog(null, "Fülle zuerst alle Felder aus!");
@@ -207,6 +210,7 @@ public class MainPanel {
 		cat_burstfire.getEditPanel().initWithData(data.getBurstfiredata());
 		cat_headshot.getEditPanel().initWithData(data.getHeadshotdata());
 		cat_explosion.getEditPanel().initWithData(data.getExplosion());
+		cat_effect.getEditPanel().initWithData(data.getEffect());
 		
 	}
 	
