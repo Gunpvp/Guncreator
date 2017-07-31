@@ -64,7 +64,7 @@ public class MainPanel {
 		 */
 		side_panel = new JPanel();
 		side_panel.setBackground(Color.DARK_GRAY);
-		side_panel.setLayout(new FlowLayout());
+		side_panel.setLayout(null);
 		
 		controll_panel = new JPanel();
 		controll_panel.setBackground(Color.WHITE);
@@ -136,10 +136,13 @@ public class MainPanel {
 		cat_effect = new EffectCategory();
 		categories.add(cat_effect);
 		
+		int i = 10;
+		
 		for (Category<? extends Serializable> category : categories) {
 			JButton button = new JButton(category.getName());
 			button.setBackground(Color.LIGHT_GRAY);
 			button.setForeground(Color.BLACK);
+			button.setBounds(10, i, 130, 25);
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (before != null) panel.remove(before);
@@ -151,6 +154,7 @@ public class MainPanel {
 				}
 			});
 			side_panel.add(button);
+			i += 35;
 		}
 		
 	}
