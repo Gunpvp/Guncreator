@@ -35,7 +35,8 @@ public class AmmoCategory extends Category<AmmoData>{
 			public void initWithData(AmmoData data) {
 				
 				material.setText(data.getMaterial().toString().toUpperCase());
-				
+				out_of_ammo_sound.setText(data.getOutOfAmmoSound().toString().toUpperCase());
+				shoot_with_no_ammo_sound.setText(data.getShootWithNoAmmoSound().toString().toUpperCase());
 			}
 			
 		};
