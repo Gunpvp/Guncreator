@@ -57,7 +57,6 @@ public class MainPanel {
 	
 	public void init() {
 		
-		panel.setBackground(Color.GREEN);
 		panel.setLayout(null);
 		
 		/**

@@ -152,14 +152,14 @@ public class ShootingCategory extends Category<ShootingData> {
 		JLabel text_spread = new JLabel("Streuung:");
 		text_spread.setBounds(10, 360, 150, 30);
 		panel.add(text_spread);
-		spread = new JSlider(0,500);
+		spread = new JSlider(0,20);
 		spread.setBackground(Color.GREEN);
 		spread.setBounds(200, 360, 200, 30);
 		panel.add(spread);
 		spread.addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent ce) {
 	            JSlider slider = (JSlider)ce.getSource();
-	            text_spread.setText("Streuung: " + slider.getValue()/10);
+	            text_spread.setText("Streuung: " + slider.getValue()/10f);
 	        }
 		});
 		

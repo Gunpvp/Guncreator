@@ -59,7 +59,6 @@ public class ItemCategory extends Category<ItemData> {
 		//weapon sound
 		sound = new JGunSound("Waffen");
 		sound.setBounds(10, 110, 400, 300);
-		sound.setBackground(Color.GREEN);
 		panel.add(sound);
 		
 		return panel;

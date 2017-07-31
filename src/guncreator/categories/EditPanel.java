@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.io.Serializable;
 
 import javax.swing.JPanel;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 
 public abstract class EditPanel<DATA extends Serializable> extends JPanel {
 	
@@ -11,7 +14,9 @@ public abstract class EditPanel<DATA extends Serializable> extends JPanel {
 	
 	public EditPanel() {
 		super();
-		super.setBackground(Color.GREEN);
+		super.setBackground(Color.WHITE);
+		super.setBorder(new EtchedBorder(Color.GRAY, Color.BLACK));
+		super.setBorder(new CompoundBorder(super.getBorder(), new EmptyBorder(10, 10, 10, 10)));
 	}
 	
 	public DATA getData() {
