@@ -1,9 +1,5 @@
 package guncreator.categories;
 
-import java.awt.Color;
-
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import org.bukkit.Material;
 
 import guncreator.utils.EnumChecker;
@@ -11,7 +7,7 @@ import guns.weopons.data.AmmoData;
 
 public class AmmoCategory extends Category<AmmoData>{
 
-	private JTextField material;
+	private JInputField material;
 	private JGunSound out_of_ammo_sound;
 	private JGunSound shoot_with_no_ammo_sound;
 	
@@ -28,47 +24,36 @@ public class AmmoCategory extends Category<AmmoData>{
 			@Override
 			protected AmmoData generateData() {
 				
-				return new AmmoData(Material.valueOf(material.getText().toUpperCase()), out_of_ammo_sound.getGunSound(), shoot_with_no_ammo_sound.getGunSound());				
+				return new AmmoData(Material.valueOf(material.getValue().toUpperCase()), out_of_ammo_sound.getGunSound(), shoot_with_no_ammo_sound.getGunSound());				
 			}
 
 			@Override
 			public void initWithData(AmmoData data) {
 				
-				material.setText(data.getMaterial().toString().toUpperCase());
+				material.setValue(data.getMaterial().toString().toUpperCase());
 				out_of_ammo_sound.setSound(data.getOutOfAmmoSound());
 				shoot_with_no_ammo_sound.setSound(data.getShootWithNoAmmoSound());
 			}
 			
 		};
 		 
-		panel.setLayout(null);
-
 		//material
-		JLabel text_material = new JLabel("Material (Item):");
-		text_material.setBounds(10, 10, 150, 30);
-		panel.add(text_material);
-		material = new JTextField();
-		material.setBackground(Color.LIGHT_GRAY);
-		material.setBounds(200, 10, 200, 30);
-		panel.add(material);
+		material = new JInputField("Material (Item):");
+		panel.addComponent(material);
 		
 		//out of ammo
 		out_of_ammo_sound = new JGunSound("Out of Ammo");
-		out_of_ammo_sound.setBounds(10, 60, 400, 300);
-		out_of_ammo_sound.setBackground(Color.GREEN);
-		panel.add(out_of_ammo_sound);
+		panel.addComponent(out_of_ammo_sound);
 		
 		//shoot with no ammo sound
 		shoot_with_no_ammo_sound = new JGunSound("No Ammo");
-		shoot_with_no_ammo_sound.setBounds(10, 360, 400, 300);
-		shoot_with_no_ammo_sound.setBackground(Color.GREEN);
-		panel.add(shoot_with_no_ammo_sound);
+		panel.addComponent(shoot_with_no_ammo_sound);
 		
 		return panel;
 	}
 	@Override
 	public boolean isEverythingFilledOut() {
-		return EnumChecker.isValidMaterial(material.getText()) && out_of_ammo_sound.isDataValid() && shoot_with_no_ammo_sound.isDataValid();
+		return EnumChecker.isValidMaterial(material.getValue()) && out_of_ammo_sound.isDataValid() && shoot_with_no_ammo_sound.isDataValid();
 	}
 
 }
