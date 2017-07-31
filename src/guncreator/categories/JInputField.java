@@ -28,11 +28,11 @@ public class JInputField extends JPanel {
 	}
 	
 	public String getValue() {
-		return this.field.getText();
+		return this.field.getText().toUpperCase();
 	}
 	
 	public void setValue(String value) {
-		this.field.setText(value);
+		this.field.setText(value.toUpperCase());
 	}
 	
 }

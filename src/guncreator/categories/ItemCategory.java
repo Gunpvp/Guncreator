@@ -2,6 +2,7 @@ package guncreator.categories;
 
 import org.bukkit.Material;
 
+import guncreator.utils.EnumChecker;
 import guns.weopons.data.ItemData;
 
 public class ItemCategory extends Category<ItemData> {
@@ -22,14 +23,14 @@ public class ItemCategory extends Category<ItemData> {
 			@Override
 			protected ItemData generateData() {
 				
-				return new ItemData(Material.valueOf(material.getValue().toUpperCase()), lore.getValue(), sound.getGunSound());
+				return new ItemData(Material.valueOf(material.getValue()), lore.getValue(), sound.getGunSound());
 				
 			}
 
 			@Override
 			public void initWithData(ItemData data) {
 				
-				material.setValue(data.getMaterial().toString().toUpperCase());
+				material.setValue(data.getMaterial().toString());
 				lore.setValue(data.getLore());
 				sound.setSound(data.getSound());
 				
@@ -43,12 +44,6 @@ public class ItemCategory extends Category<ItemData> {
 		lore = new JInputField("Beschreibung des Items:");
 		panel.addComponent(lore);
 		
-		JAdjustbar bar = new JAdjustbar("Test Slider:", "Ticks", 0, 2, 0.1f);
-		panel.addComponent(bar);
-		
-		JBox box = new JBox("Test Box:");
-		panel.addComponent(box);
-		
 		//weapon sound
 		sound = new JGunSound("Waffen");
 		panel.addComponent(sound);
@@ -58,7 +53,7 @@ public class ItemCategory extends Category<ItemData> {
 
 	@Override
 	public boolean isEverythingFilledOut() {
-		return false;
+		return sound.isDataValid() && EnumChecker.isValidMaterial(material.getValue()) && !lore.getValue().isEmpty();
 	}
 
 }
