@@ -67,7 +67,7 @@ public class AmmoCategory extends Category<AmmoData>{
 	}
 	@Override
 	public boolean isEverythingFilledOut() {
-		return EnumChecker.isValidMaterial(material.getText()) && out_of_ammo_sound.isValid() && shoot_with_no_ammo_sound.isValid();
+		return EnumChecker.isValidMaterial(material.getText()) && out_of_ammo_sound.isDataValid() && shoot_with_no_ammo_sound.isDataValid();
 	}
 
 }
