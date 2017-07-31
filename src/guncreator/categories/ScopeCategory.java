@@ -49,7 +49,7 @@ public class ScopeCategory extends Category<ScopeData>{
 			JAdjustbar spread = new JAdjustbar("Streuung", "", 0, 5, 0.1f);
 			panel.addComponent(spread);
 			
-			JGunSound toggle_sound = new JGunSound("Umschalt Sound");
+			JGunSound toggle_sound = new JGunSound("Umschalt");
 			panel.addComponent(toggle_sound);
 		
 		return panel;
