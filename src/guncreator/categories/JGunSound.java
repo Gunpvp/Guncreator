@@ -94,6 +94,9 @@ public class JGunSound extends JPanel {
 	}
 	
 	public GunSound getGunSound() {
+		
+		if (!isDataValid()) return null;
+		
 		if (!sound_name_2.getText().isEmpty()) {
 			return new GunSound(Sound.valueOf(sound_name_1.getText().toUpperCase()), volume_1.getValue(),
 					pitch_1.getValue()).addSound(Sound.valueOf(sound_name_2.getText().toUpperCase()), volume_2.getValue(),
