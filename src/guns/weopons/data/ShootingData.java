@@ -50,11 +50,11 @@ public class ShootingData implements Serializable {
 		return speed;
 	}
 
-	public boolean isDrag_down() {
+	public boolean isDraggingDown() {
 		return drag_down;
 	}
 
-	public int getDrag_distance() {
+	public int getDragDistance() {
 		return drag_distance;
 	}
 
