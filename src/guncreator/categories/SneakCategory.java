@@ -1,20 +1,12 @@
 package guncreator.categories;
 
-import java.awt.Color;
-
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import guns.weopons.data.SneakData;
 
 public class SneakCategory extends Category<SneakData>{
 
-	private JCheckBox sneak_depending;
-	private JCheckBox block_recoil;
-	private JSlider spread;
+	private JBox sneak_depending;
+	private JBox block_recoil;
+	private JAdjustbar spread;
 	
 	public SneakCategory() {
 		super("SNEAK");
@@ -29,15 +21,15 @@ public class SneakCategory extends Category<SneakData>{
 			@Override
 			protected SneakData generateData() {
 				
-				return new SneakData(sneak_depending.isSelected(), block_recoil.isSelected(), spread.getValue()/10);
+				return new SneakData(sneak_depending.getValue(), block_recoil.getValue(), spread.getValue());
 				
 			}
 
 			@Override
 			public void initWithData(SneakData data) {
 				
-				sneak_depending.setSelected(data.isSneakDepending());
-				block_recoil.setSelected(data.isBlockRecoil());
+				sneak_depending.setValue(data.isSneakDepending());
+				block_recoil.setValue(data.isBlockRecoil());
 				spread.setValue((int) data.getSpread());
 				
 			}
@@ -47,37 +39,16 @@ public class SneakCategory extends Category<SneakData>{
 		panel.setLayout(null);
 		
 		//sneak depending
-		JLabel text_sneak_depending = new JLabel("Sneak ändert Eigenschaften:");
-		text_sneak_depending.setBounds(10, 10, 150, 30);
-		panel.add(text_sneak_depending);
-		sneak_depending = new JCheckBox();
-		sneak_depending.setBackground(Color.GREEN);
-		sneak_depending.setBounds(200, 10, 30, 30);
-		panel.add(sneak_depending);
+		sneak_depending = new JBox("Sneak ändert Eigenschaften:");
+		panel.addComponent(sneak_depending);
 		
 		//block recoil
-		JLabel text_block_recoil = new JLabel("Rückstoß blockieren:");
-		text_block_recoil.setBounds(10, 60, 150, 30);
-		panel.add(text_block_recoil);
-		block_recoil = new JCheckBox();
-		block_recoil.setBackground(Color.GREEN);
-		block_recoil.setBounds(200, 60, 30, 30);
-		panel.add(block_recoil);
+		block_recoil = new JBox("Rückstoß blockieren:");
+		panel.addComponent(block_recoil);
 		
 		//spread
-		JLabel text_spread = new JLabel("Streuung:");
-		text_spread.setBounds(10, 110, 150, 30);
-		panel.add(text_spread);
-		spread = new JSlider(0,100);
-		spread.setBackground(Color.GREEN);
-		spread.setBounds(200, 110, 200, 30);
-		panel.add(spread);
-		spread.addChangeListener(new ChangeListener() {
-	        public void stateChanged(ChangeEvent ce) {
-	            JSlider slider = (JSlider)ce.getSource();
-	            text_spread.setText("Streuung: " + slider.getValue()/20f);
-	        }
-		});
+		spread = new JAdjustbar("Streuung:", "", 0, 5, 0.1f);
+		panel.addComponent(spread);
 		
 		return panel;
 	}
