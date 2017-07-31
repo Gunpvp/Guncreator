@@ -57,7 +57,7 @@ public class HeadshotCategory extends Category<HeadshotData> {
 
 	@Override
 	public boolean isEverythingFilledOut() {
-		return shooter_sound.isDataValid() && victim_sound.isDataValid();
+		return (shooter_sound.isDataValid() && victim_sound.isDataValid()) || !headshot.getValue();
 	}
 
 }

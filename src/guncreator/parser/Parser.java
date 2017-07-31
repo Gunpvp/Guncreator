@@ -14,6 +14,14 @@ public class Parser {
 	
 	public static void saveToFile(File file, GunData data) {
 		
+		if (!file.exists())
+			try {
+				file.mkdirs();
+				file.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		
 		FileOutputStream fout;
 		ObjectOutputStream oos;
 		
