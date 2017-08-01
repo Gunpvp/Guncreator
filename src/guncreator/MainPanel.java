@@ -26,6 +26,7 @@ import guncreator.categories.ReloadCategory;
 import guncreator.categories.ScopeCategory;
 import guncreator.categories.ShootingCategory;
 import guncreator.categories.SneakCategory;
+import guncreator.enums.EnumList;
 import guncreator.parser.Parser;
 import guns.weapons.data.GunData;
 
@@ -73,6 +74,8 @@ public class MainPanel {
 
 		controll_panel.setBounds(0, 950, 600, 65);
 		panel.add(controll_panel);
+		
+		panel.add(new EnumList(0));
 		
 		/**
 		 * fill controll panel with stuff
