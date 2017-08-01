@@ -109,6 +109,8 @@ public class JGunSound extends JPanel {
 	
 	public void setSound(GunSound sound) {
 		
+		if (sound == null) return;
+		
 		sound_name_1.setText(sound.getSounds().get(0).getSound().toString().toUpperCase());
 		volume_1.setValue(sound.getSounds().get(0).getVolume());
 		pitch_1.setValue(sound.getSounds().get(0).getPitch());

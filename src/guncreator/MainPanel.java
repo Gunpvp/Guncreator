@@ -4,15 +4,15 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import guncreator.categories.AmmoCategory;
 import guncreator.categories.BurstfireCategory;
@@ -48,8 +48,6 @@ public class MainPanel {
 	private ScopeCategory cat_scope;
 	private EffectCategory cat_effect;
 
-	private JTextField name_of_gun;
-	
 	public MainPanel(JPanel panel) {
 		this.panel = panel;
 		this.init();
@@ -79,15 +77,22 @@ public class MainPanel {
 		/**
 		 * fill controll panel with stuff
 		 */
-		name_of_gun = new JTextField("NAME OF GUN");
-		controll_panel.add(name_of_gun);
-		
 		JButton save = new JButton("SAVE");
 		
 		save.addActionListener(e -> {
 			
-			GunData data = generateGunData();
-			if (data != null) Parser.saveToFile(new File("weapons/" + data.getName() + ".weapon"), data);
+			JFileChooser chooser = new JFileChooser();
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("Weapon Files", "weapon");
+			chooser.setFileFilter(filter);
+			
+			int returnVal = chooser.showOpenDialog(panel);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				
+				String file_name = chooser.getSelectedFile().getName();
+				GunData data = generateGunData(file_name.substring(0, file_name.length()-7));
+				if (data != null) Parser.saveToFile(chooser.getSelectedFile(), data);
+				
+			}
 			
 		});
 		
@@ -97,7 +102,16 @@ public class MainPanel {
 		
 		load.addActionListener(e -> {
 			
-			fillWithContent(Parser.loadFromFile(new File("weapons/" + name_of_gun.getText() + ".weapon")));
+			JFileChooser chooser = new JFileChooser();
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("Weapon Files", "weapon");
+			chooser.setFileFilter(filter);
+			
+			int returnVal = chooser.showOpenDialog(panel);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				
+				fillWithContent(Parser.loadFromFile(chooser.getSelectedFile()));
+				
+			}
 			
 		});
 		
@@ -157,6 +171,12 @@ public class MainPanel {
 			i += 35;
 		}
 		
+		cat_item.getEditPanel().setBounds(150,0,450,950);
+		panel.add(cat_item.getEditPanel());
+		panel.validate();
+		panel.repaint();
+		before = cat_item.getEditPanel();
+		
 	}
 	
 	/**
@@ -165,9 +185,9 @@ public class MainPanel {
 	 * 
 	 * @return generated gun data
 	 */
-	private GunData generateGunData() {
+	private GunData generateGunData(String name) {
 		
-		if (!name_of_gun.getText().isEmpty()) {
+		if (!name.isEmpty()) {
 			
 			boolean valid = true;
 			
@@ -177,7 +197,9 @@ public class MainPanel {
 			
 			if (valid) {
 				
-				return new GunData(name_of_gun.getText(),
+				System.out.println("Creating weapon: " + name);
+				
+				return new GunData(name,
 						cat_item.getEditPanel().getData(), 
 						cat_shoot.getEditPanel().getData(),
 						cat_reload.getEditPanel().getData(),
