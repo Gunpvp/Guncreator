@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 
 public class Frame extends JFrame {
 	
-	public static final int WIDTH = 1200;
+	public static final int WIDTH = 1225;
 	public static final int HEIGHT = 1015;
 	
 	/**

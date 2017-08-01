@@ -2,6 +2,7 @@ package guncreator;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
@@ -10,9 +11,16 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.bukkit.Material;
+import org.bukkit.Sound;
 
 import guncreator.categories.AmmoCategory;
 import guncreator.categories.BurstfireCategory;
@@ -48,6 +56,8 @@ public class MainPanel {
 	private AmmoCategory cat_ammo;
 	private ScopeCategory cat_scope;
 	private EffectCategory cat_effect;
+	
+	private static JLabel info_text;
 
 	public MainPanel(JPanel panel) {
 		this.panel = panel;
@@ -75,7 +85,27 @@ public class MainPanel {
 		controll_panel.setBounds(0, 950, 600, 65);
 		panel.add(controll_panel);
 		
-		panel.add(new EnumList(0));
+		panel.add(new EnumList() {
+			protected Object[] getListData() {
+				return Material.values();
+			}
+		});
+		
+		panel.add(new EnumList() {
+			protected Object[] getListData() {
+				return Sound.values();
+			}
+		});
+		
+		JPanel info_enumlists = new JPanel(new FlowLayout());
+		info_enumlists.setBounds(600, 900, 620, 100);
+		info_enumlists.setBackground(Color.LIGHT_GRAY);
+		info_enumlists.setBorder(new EtchedBorder(Color.GRAY, Color.BLACK));
+		info_enumlists.setBorder(new CompoundBorder(info_enumlists.getBorder(), new EmptyBorder(10, 10, 10, 10)));
+		info_text = new JLabel("Click something to copy into clipboard!");
+		info_text.setFont(new Font("Arial", 500, 25));
+		info_enumlists.add(info_text);
+		panel.add(info_enumlists);
 		
 		/**
 		 * fill controll panel with stuff
@@ -243,6 +273,12 @@ public class MainPanel {
 		cat_explosion.getEditPanel().initWithData(data.getExplosion());
 		cat_effect.getEditPanel().initWithData(data.getEffect());
 		
+	}
+	
+	public static void setInfoText(String text) {
+		info_text.setText(text);
+		info_text.validate();
+		info_text.repaint();
 	}
 	
 }
