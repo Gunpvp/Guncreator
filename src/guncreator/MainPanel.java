@@ -67,6 +67,7 @@ public class MainPanel {
 	public void init() {
 		
 		panel.setLayout(null);
+		panel.setBackground(Color.LIGHT_GRAY);
 		
 		/**
 		 * create panels
@@ -82,36 +83,42 @@ public class MainPanel {
 		side_panel.setBounds(0, 0, 150, 950);
 		panel.add(side_panel);
 
-		controll_panel.setBounds(0, 950, 600, 65);
+		controll_panel.setBounds(150, 950, 450, 65);
+		controll_panel.setBackground(Color.LIGHT_GRAY);
 		panel.add(controll_panel);
 		
-		panel.add(new EnumList() {
+		
+		EnumList material_list = new EnumList() {
 			protected Object[] getListData() {
 				return Material.values();
 			}
-		});
+		};
+		material_list.changeBackground(Color.GRAY);
+		panel.add(material_list);
 		
-		panel.add(new EnumList() {
+		EnumList sound_list = new EnumList() {
 			protected Object[] getListData() {
 				return Sound.values();
 			}
-		});
+		};
+		sound_list.changeBackground(Color.GRAY);
+		panel.add(sound_list);
 		
 		JPanel info_enumlists = new JPanel(new FlowLayout());
-		info_enumlists.setBounds(600, 900, 620, 100);
+		info_enumlists.setBounds(600, 900, 620, 50);
 		info_enumlists.setBackground(Color.LIGHT_GRAY);
 		info_enumlists.setBorder(new EtchedBorder(Color.GRAY, Color.BLACK));
 		info_enumlists.setBorder(new CompoundBorder(info_enumlists.getBorder(), new EmptyBorder(10, 10, 10, 10)));
 		info_text = new JLabel("Click something to copy into clipboard!");
-		info_text.setFont(new Font("Arial", 500, 25));
+		info_text.setFont(new Font("Arial", 1, 20));
 		info_enumlists.add(info_text);
 		panel.add(info_enumlists);
 		
 		/**
-		 * fill controll panel with stuff
+		 * fill control panel with stuff
 		 */
 		JButton save = new JButton("SAVE");
-		
+		save.setBackground(Color.WHITE);
 		save.addActionListener(e -> {
 			
 			JFileChooser chooser = new JFileChooser();
@@ -132,7 +139,7 @@ public class MainPanel {
 		controll_panel.add(save);
 		
 		JButton load = new JButton("LOAD");
-		
+		load.setBackground(Color.WHITE);
 		load.addActionListener(e -> {
 			
 			JFileChooser chooser = new JFileChooser();
@@ -194,9 +201,10 @@ public class MainPanel {
 				public void actionPerformed(ActionEvent e) {
 					if (before != null) panel.remove(before);
 					category.getEditPanel().setBounds(150,0,450,950);
+					category.getEditPanel().setBackground(Color.LIGHT_GRAY);
 					panel.add(category.getEditPanel());
 					panel.validate();
-					panel.repaint();
+					panel.repaint();			
 					before = category.getEditPanel();
 				}
 			});
@@ -205,6 +213,7 @@ public class MainPanel {
 		}
 		
 		cat_item.getEditPanel().setBounds(150,0,450,950);
+		cat_item.getEditPanel().setBackground(Color.LIGHT_GRAY);
 		panel.add(cat_item.getEditPanel());
 		panel.validate();
 		panel.repaint();

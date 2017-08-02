@@ -20,7 +20,8 @@ public abstract class EnumList extends JPanel {
 	
 	private JList<?> list;
 	private static int count = 0;
-
+	private JScrollPane listScroller;
+	
 	public EnumList() {
 		
 		super(new BorderLayout());
@@ -42,7 +43,7 @@ public abstract class EnumList extends JPanel {
 			}
 		});
 		
-		JScrollPane listScroller = new JScrollPane(list);
+		listScroller = new JScrollPane(list);
 		listScroller.setPreferredSize(new Dimension(250, 80));
 		super.setBackground(Color.red);
 		super.add(listScroller);
@@ -50,5 +51,11 @@ public abstract class EnumList extends JPanel {
 	}
 	
 	protected abstract Object[] getListData();
-	
+
+	public void changeBackground(Color color) {
+		list.setBackground(color);
+		listScroller.getVerticalScrollBar().setBackground(color);
+	}	
 }
+
+
