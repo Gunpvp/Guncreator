@@ -125,7 +125,7 @@ public class MainPanel {
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("Weapon Files", "weapon");
 			chooser.setFileFilter(filter);
 			
-			int returnVal = chooser.showOpenDialog(panel);
+			int returnVal = chooser.showSaveDialog(panel);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				
 				String file_name = chooser.getSelectedFile().getName();
